@@ -8,6 +8,7 @@ using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MoonSharp.Interpreter;
 using TomShane.Neoforce.Controls;
 
 namespace AirPlaner
@@ -70,8 +71,11 @@ namespace AirPlaner
             GuiManager.Initialize();
             GuiManager.ShowSoftwareCursor = true;
 
-            AddInitialScreens();
+            UserData.RegisterAssembly();
+            UserData.RegisterType<Control>();
+            UserData.RegisterType<GroupPanel>();
 
+            AddInitialScreens();
 
             base.Initialize();
         }

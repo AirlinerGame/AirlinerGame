@@ -68,6 +68,7 @@
     <Compile Include="UI\Components\IGuiItem.cs" />
     <Compile Include="UI\Components\InputText.cs" />
     <Compile Include="UI\Components\Label.cs" />
+    <Compile Include="UI\GuiLuaManager.cs" />
     <Compile Include="UI\GUIManager.cs" />
     <Compile Include="UI\Menu\MenuComponent.cs" />
     <Compile Include="UI\Menu\MenuEntry.cs" />
@@ -78,6 +79,9 @@
     <Reference Include="MonoGame.Framework, Version=3.4.0.70, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="MoonSharp.Interpreter">
+      <HintPath>..\Libs\MoonSharp.Interpreter.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -113,6 +117,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
+    <None Include="Content\UI\CreateGameUI.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

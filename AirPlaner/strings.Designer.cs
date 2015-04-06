@@ -79,6 +79,24 @@ namespace AirPlaner {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Airline Settings ähnelt.
+        /// </summary>
+        public static string createGameAirlineSettingsCaption {
+            get {
+                return ResourceManager.GetString("createGameAirlineSettingsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Player Settings ähnelt.
+        /// </summary>
+        public static string createGameUserSettingsCaption {
+            get {
+                return ResourceManager.GetString("createGameUserSettingsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Load Game ähnelt.
         /// </summary>
         public static string menuLoadGame {

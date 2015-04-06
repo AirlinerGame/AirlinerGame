@@ -123,6 +123,12 @@
   <data name="btnSaveAndClose" xml:space="preserve">
     <value>Save &amp; Close</value>
   </data>
+  <data name="createGameAirlineSettingsCaption" xml:space="preserve">
+    <value>Airline Settings</value>
+  </data>
+  <data name="createGameUserSettingsCaption" xml:space="preserve">
+    <value>Player Settings</value>
+  </data>
   <data name="menuLoadGame" xml:space="preserve">
     <value>Load Game</value>
   </data>
