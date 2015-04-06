@@ -73,6 +73,7 @@ namespace AirPlaner
 
             UserData.RegisterAssembly();
             UserData.RegisterType<Control>();
+            UserData.RegisterType<Container>();
             UserData.RegisterType<GroupPanel>();
 
             AddInitialScreens();
