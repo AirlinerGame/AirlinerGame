@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using AirPlaner.Game.Api;
 using AirPlaner.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -25,6 +26,7 @@ namespace AirPlaner.Screen
         private bool _isInitialized;
 
         public AirPlanerGame InternalGame { get; set; }
+        public ScriptLoader ScriptLoader { get; set; }
 
         public ScreenManager(AirPlanerGame game)
             : base(game)
@@ -32,6 +34,8 @@ namespace AirPlaner.Screen
             InternalGame = game;
             TraceEnabled = false;
             _input = new InputState();
+
+            ScriptLoader = new ScriptLoader(this);
         }
 
         #region Overrides of DrawableGameComponent

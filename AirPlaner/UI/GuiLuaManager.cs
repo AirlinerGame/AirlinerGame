@@ -29,6 +29,11 @@ namespace AirPlaner.UI
             return Manager.ScreenHeight;
         }
 
+        public string GetText(string key)
+        {
+            return strings.ResourceManager.GetString(key);
+        }
+
         public void SetColor(string color, Container component)
         {
             switch (color)
@@ -45,6 +50,7 @@ namespace AirPlaner.UI
         public GroupPanel CreateGroupPanel()
         {
             var groupPanel = new GroupPanel(Manager);
+            groupPanel.TextColor = Color.White;
 
             return groupPanel;
         }

@@ -8,6 +8,7 @@ using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
 using TomShane.Neoforce.Controls;
 
@@ -115,6 +116,11 @@ namespace AirPlaner
         protected override void Update(GameTime gameTime)
         {
             //Keyboard.Update(gameTime);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.F7))
+            {
+                _screenManager.ScriptLoader.Reload();
+            }
 
             GuiManager.Update(gameTime);
 

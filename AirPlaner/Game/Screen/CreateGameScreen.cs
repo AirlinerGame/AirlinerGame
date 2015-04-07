@@ -34,41 +34,7 @@ namespace AirPlaner.Game.Screen
                 _backgroundTexture = _content.Load<Texture2D>("CreateGameBG");
             }
 
-            var manager = ScreenManager.InternalGame.GuiManager;
-
-            var script = new Script();
-            script.Globals["ui"] = new GuiLuaManager(manager);
-            script.DoFile("Content/UI/CreateGameUI.lua");
-
-            /*
-            var groupPanelPlayer = new GroupPanel(manager);
-
-            groupPanelPlayer.Text = strings.createGameUserSettingsCaption;
-
-            groupPanelPlayer.Top = 20;
-            groupPanelPlayer.Left = 20;
-            groupPanelPlayer.Width = manager.ScreenWidth/2 - 50;
-            groupPanelPlayer.Height = 300;
-
-            groupPanelPlayer.Color = Color.CornflowerBlue;
-            groupPanelPlayer.TextColor = Color.White;
-
-            manager.Add(groupPanelPlayer);
-
-            var groupPanelAirline = new GroupPanel(manager);
-
-            groupPanelAirline.Text = strings.createGameAirlineSettingsCaption;
-
-            groupPanelAirline.Top = 20;
-            groupPanelAirline.Left = 50 + groupPanelPlayer.Width + 20;
-            groupPanelAirline.Width = groupPanelPlayer.Width;
-            groupPanelAirline.Height = 300;
-
-            groupPanelAirline.Color = Color.CornflowerBlue;
-            groupPanelAirline.TextColor = Color.White;
-
-            manager.Add(groupPanelAirline);
-            */
+            ScreenManager.ScriptLoader.Load("Content/UI/CreateGameUI.lua");
             base.Activate(instancePreserved);
         }
 
