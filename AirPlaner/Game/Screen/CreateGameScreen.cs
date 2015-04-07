@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Threading;
 using AirPlaner.Screen;
-using AirPlaner.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MoonSharp.Interpreter;
-using TomShane.Neoforce.Controls;
 
 namespace AirPlaner.Game.Screen
 {
@@ -35,6 +31,7 @@ namespace AirPlaner.Game.Screen
             }
 
             ScreenManager.ScriptLoader.Load("Content/UI/CreateGameUI.lua");
+            ScreenManager.ScriptLoader.Run();
             base.Activate(instancePreserved);
         }
 

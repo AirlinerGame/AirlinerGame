@@ -28,8 +28,8 @@ namespace AirPlaner.Game.Screen
             foreach (GameScreen gameScreen in screenManager.GetScreens())
             {
                 gameScreen.ExitScreen();
-
             }
+            screenManager.ScriptLoader.Unload();
 
             LoadingScreen loadingScreen = new LoadingScreen(screenManager, loadingIsSlow, screensToLoad) { Message = strings.txtLoading };
             screenManager.AddScreen(loadingScreen);

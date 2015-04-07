@@ -51,6 +51,7 @@
     <Compile Include="IO\MouseHandler.cs" />
     <Compile Include="IO\MouseKey.cs" />
     <Compile Include="IO\Settings\ApplicationSettings.cs" />
+    <Compile Include="IO\Settings\SettingsManager.cs" />
     <Compile Include="strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -121,6 +122,9 @@
     <None Include="Content\UI\CreateGameUI.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\UI\MainMenuUI.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
@@ -148,6 +152,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PluginApi\PluginApi.csproj">
+      <Project>{4cac1710-3b68-450e-aa0a-843052807eaa}</Project>
+      <Name>PluginApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">

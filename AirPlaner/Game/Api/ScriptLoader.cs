@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Airliner.Plugin;
+using AirPlaner.Game.Screen;
 using AirPlaner.Screen;
 using AirPlaner.UI;
 using MoonSharp.Interpreter;
@@ -15,10 +18,12 @@ namespace AirPlaner.Game.Api
         private ScriptContext _context;
 
         public ScreenManager ScreenManager { get; private set; }
+        public List<IPlugin> Mods { get; private set; } 
 
         public ScriptLoader(ScreenManager manager)
         {
             ScreenManager = manager;
+            Mods = new List<IPlugin>();
         }
 
         public void Reload()
@@ -30,6 +35,29 @@ namespace AirPlaner.Game.Api
         public void Load(string filepath)
         {
             _context = new ScriptContext(filepath, this);
+        }
+
+        public void LoadPlugins()
+        {
+            if (Directory.Exists("Mods"))
+            {
+                
+            }
+        }
+
+        public void SetContext(object context)
+        {
+            _context.SetScriptContext(context);
+        }
+
+        public void Run()
+        {
+            _context.Run();
+        }
+
+        public void Unload()
+        {
+            _context.Unload();
         }
     }
 
@@ -49,12 +77,12 @@ namespace AirPlaner.Game.Api
 
         private void Load()
         {
+            Unload();
             Script = new Script();
             Script.Globals["ui"] = new GuiLuaManager(ScriptLoader.ScreenManager.InternalGame.GuiManager);
-            Script.DoFile("Content/UI/CreateGameUI.lua");
         }
 
-        private void Unload()
+        public void Unload()
         {
             var guiManager = ScriptLoader.ScreenManager.InternalGame.GuiManager;
 
@@ -67,9 +95,20 @@ namespace AirPlaner.Game.Api
 
         public void Reload()
         {
-            Unload();
+            var context = Script.Globals["context"];
             Load();
+            SetScriptContext(context);
+            Run();
         }
 
+        public void Run()
+        {
+            Script.DoFile(CurrentScriptPath);
+        }
+
+        public void SetScriptContext(object context)
+        {
+            Script.Globals["context"] = context;
+        }
     }
 }

@@ -29,6 +29,8 @@ namespace AirPlaner
         private ScreenFactory _screenFactory;
         public Manager GuiManager { get; set; }
 
+        public SettingsManager UserSettings { get; private set; }
+
         public Dictionary<int, Language> AvailableLanguages { get; set; }
 
         public AirPlanerGame()
@@ -41,6 +43,8 @@ namespace AirPlaner
                 {0, new Language {CultureCode = "en", Name = "English"}},
                 {1, new Language {CultureCode = "de", Name = "Deutsch"}}
             };
+
+            UserSettings = new SettingsManager(this);
 
             _graphics.PreferredBackBufferWidth = 1280;
             _graphics.PreferredBackBufferHeight = 720;
@@ -72,10 +76,19 @@ namespace AirPlaner
             GuiManager.Initialize();
             GuiManager.ShowSoftwareCursor = true;
 
+            _screenManager.ScriptLoader.LoadPlugins();
+
             UserData.RegisterAssembly();
+            UserData.RegisterType<Button>();
             UserData.RegisterType<Control>();
             UserData.RegisterType<Container>();
             UserData.RegisterType<GroupPanel>();
+            UserData.RegisterType<ImageBox>();
+            UserData.RegisterType<SideBar>();
+
+            UserData.RegisterType<Texture2D>();
+
+            UserData.RegisterType<BackgroundScene>();
 
             AddInitialScreens();
 
@@ -123,6 +136,7 @@ namespace AirPlaner
             }
 
             GuiManager.Update(gameTime);
+            UserSettings.Tick(gameTime);
 
             base.Update(gameTime);
         }

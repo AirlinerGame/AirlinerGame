@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using AirPlaner.Config.Entity;
 using AirPlaner.IO.Settings;
@@ -19,11 +18,8 @@ namespace AirPlaner.Game.Screen
     {
         private ContentManager _content;
         private Texture2D _backgroundTexture;
-        private SideBar _sideBar;
 
-        public Button StartGameButton { get; set; }
-        public Button LoadGameButton { get; set; }
-        public Button SettingsButton { get; set; }
+        public Texture2D Logo { get; set; }
 
         public BackgroundScene()
         {
@@ -44,53 +40,22 @@ namespace AirPlaner.Game.Screen
                     _content = new ContentManager(ScreenManager.Game.Services, "Content");
                 }
 
-                var manager = ScreenManager.InternalGame.GuiManager;
+                Logo = _content.Load<Texture2D>("logo");
 
-                _sideBar = new SideBar(manager) { Width = 250, Height = manager.ScreenHeight };
-                _sideBar.Left = manager.ScreenWidth - _sideBar.Width;
-
-                var logo = new ImageBox(manager);
-                logo.SizeMode = SizeMode.Stretched;
-                logo.Width = _sideBar.Width;
-                logo.Height = 256;
-                logo.Image = _content.Load<Texture2D>("logo");
-
-                var baseHeight = logo.Height + 20;
-
-                StartGameButton = new Button(manager) {Width = 200};
-                StartGameButton.Left = _sideBar.Width / 2 - StartGameButton.Width / 2;
-                StartGameButton.Top = baseHeight;
-                StartGameButton.Text = strings.menuStartGame;
-                StartGameButton.Click += StartGameButtonOnClick;
-
-                LoadGameButton = new Button(manager) {Width = 200};
-                LoadGameButton.Left = _sideBar.Width / 2 - LoadGameButton.Width / 2;
-                LoadGameButton.Top = StartGameButton.Top + 30;
-                LoadGameButton.Text = strings.menuLoadGame;
-
-                SettingsButton = new Button(manager) {Width = 200};
-                SettingsButton.Left = _sideBar.Width / 2 - SettingsButton.Width / 2;
-                SettingsButton.Top = LoadGameButton.Top + 30;
-                SettingsButton.Text = strings.menuSettings;
-                SettingsButton.Click += SettingsButtonOnClick;
-
-                _sideBar.Add(logo);
-                _sideBar.Add(StartGameButton);
-                _sideBar.Add(LoadGameButton);
-                _sideBar.Add(SettingsButton);
-
-                manager.Add(_sideBar);
+                ScreenManager.ScriptLoader.Load("Content/UI/MainMenuUI.lua");
+                ScreenManager.ScriptLoader.SetContext(this);
+                ScreenManager.ScriptLoader.Run();
 
                 _backgroundTexture = _content.Load<Texture2D>("AirlinerBG");
             }
         }
 
-        private void StartGameButtonOnClick(object sender, EventArgs eventArgs)
+        public void StartGameButtonOnClick(object sender, EventArgs eventArgs)
         {
             LoadingScreen.Load(ScreenManager, true, "Loading...", new CreateGameScreen());
         }
 
-        private void SettingsButtonOnClick(object sender, EventArgs eventArgs)
+        public void SettingsButtonOnClick(object sender, EventArgs eventArgs)
         {
             var manager = ScreenManager.InternalGame.GuiManager;
             var window = new Window(manager);
@@ -168,7 +133,6 @@ namespace AirPlaner.Game.Screen
         public override void Unload()
         {
             _content.Unload();
-            ScreenManager.InternalGame.GuiManager.Remove(_sideBar);
         }
 
         public override void Draw(GameTime gameTime)
