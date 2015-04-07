@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Microsoft.Xna.Framework;
 using MoonSharp.Interpreter;
@@ -36,14 +37,14 @@ namespace AirPlaner.UI
 
         public void SetColor(string color, Container component)
         {
-            switch (color)
+            var colors = typeof (Color).GetProperties();
+
+            foreach (var colorT in colors)
             {
-                case "CornflowerBlue":
-                    component.Color = Color.CornflowerBlue;
-                    break;
-                default:
-                    component.Color = Color.Black;
-                    break;
+                if (colorT.Name.Equals(color))
+                {
+                    component.Color = (Color) colorT.GetValue(null, null);
+                }
             }
         }
 
