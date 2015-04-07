@@ -3,6 +3,8 @@ using AirPlaner.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using TomShane.Neoforce.Controls;
+using EventArgs = TomShane.Neoforce.Controls.EventArgs;
 
 namespace AirPlaner.Game.Screen
 {
@@ -10,6 +12,13 @@ namespace AirPlaner.Game.Screen
     {
         private ContentManager _content;
         private Texture2D _backgroundTexture;
+
+        public TextBox Firstname { get; set; }
+        public TextBox Lastname { get; set; }
+
+        public Texture2D ProfilePicture { get; set; }
+        public Window Window { get; set; }
+        public Label ErrorText { get; set; }
 
         public CreateGameScreen()
         {
@@ -28,11 +37,30 @@ namespace AirPlaner.Game.Screen
             if (_backgroundTexture == null)
             {
                 _backgroundTexture = _content.Load<Texture2D>("CreateGameBG");
+                ProfilePicture = _content.Load<Texture2D>("CreateGame/empty_profile");
             }
 
             ScreenManager.ScriptLoader.Load("Content/UI/CreateGameUI.lua");
+            ScreenManager.ScriptLoader.SetContext(this);
             ScreenManager.ScriptLoader.Run();
             base.Activate(instancePreserved);
+        }
+
+        public void StartGameButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            //Check if required data is set
+            if (string.IsNullOrEmpty(Firstname.Text) || string.IsNullOrEmpty(Lastname.Text))
+            {
+                //Show Error Message
+                ErrorText.Text = strings.createGameErrorNameMissing;
+                ErrorText.Alignment = Alignment.TopCenter;
+                ScreenManager.InternalGame.GuiManager.Add(Window);
+            }
+        }
+
+        public void ErrorMessageOkayOnClick(object sender, EventArgs eventArgs)
+        {
+            ScreenManager.InternalGame.GuiManager.Remove(Window);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

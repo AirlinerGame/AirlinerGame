@@ -45,6 +45,21 @@ namespace AirPlaner.UI
             }
         }
 
+        public Color GetColor(string color)
+        {
+            var colors = typeof(Color).GetProperties();
+
+            foreach (var colorT in colors)
+            {
+                if (colorT.Name.Equals(color))
+                {
+                    return (Color) colorT.GetValue(null, null);
+                }
+            }
+
+            return Color.Black;
+        }
+
         public GroupPanel CreateGroupPanel()
         {
             var groupPanel = new GroupPanel(Manager);
@@ -71,6 +86,32 @@ namespace AirPlaner.UI
         {
             var imageBox = new ImageBox(Manager);
             return imageBox;
+        }
+
+        public TextBox CreateTextBox()
+        {
+            var textBox = new TextBox(Manager) {TextColor = Color.White};
+            return textBox;
+        }
+
+        public Label CreateLabel()
+        {
+            var label = new Label(Manager) {TextColor = Color.White};
+            return label;
+        }
+
+        public GroupBox CreateGroupBox()
+        {
+            var groupBox = new GroupBox(Manager);
+            groupBox.TextColor = Color.White;
+
+            return groupBox;
+        }
+
+        public Window CreateWindow()
+        {
+            var window = new Window(Manager) {TextColor = Color.White};
+            return window;
         }
 
         public void AddToManager(Component component)

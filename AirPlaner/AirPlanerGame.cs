@@ -70,7 +70,7 @@ namespace AirPlaner
             _screenManager = new ScreenManager(this);
             Components.Add(_screenManager);
             GuiManager = new Manager(this, _graphics);
-            GuiManager.Skin = new Skin(GuiManager, "Purple");
+            GuiManager.Skin = new Skin(GuiManager, "Default");
             GuiManager.AutoCreateRenderTarget = true;
 
             GuiManager.Initialize();
@@ -84,11 +84,17 @@ namespace AirPlaner
             UserData.RegisterType<Container>();
             UserData.RegisterType<GroupPanel>();
             UserData.RegisterType<ImageBox>();
+            UserData.RegisterType<GroupBox>();
+            UserData.RegisterType<Label>();
             UserData.RegisterType<SideBar>();
+            UserData.RegisterType<TextBox>();
+            UserData.RegisterType<Window>();
 
+            UserData.RegisterType<Color>();
             UserData.RegisterType<Texture2D>();
 
             UserData.RegisterType<BackgroundScene>();
+            UserData.RegisterType<CreateGameScreen>();
 
             AddInitialScreens();
 

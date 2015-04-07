@@ -70,6 +70,15 @@ namespace AirPlaner {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Okay ähnelt.
+        /// </summary>
+        public static string btnOkay {
+            get {
+                return ResourceManager.GetString("btnOkay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save &amp; Close ähnelt.
         /// </summary>
         public static string btnSaveAndClose {
@@ -88,11 +97,65 @@ namespace AirPlaner {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You must enter a firstname and lastname ähnelt.
+        /// </summary>
+        public static string createGameErrorNameMissing {
+            get {
+                return ResourceManager.GetString("createGameErrorNameMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Player Settings ähnelt.
         /// </summary>
         public static string createGameUserSettingsCaption {
             get {
                 return ResourceManager.GetString("createGameUserSettingsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select Picture... ähnelt.
+        /// </summary>
+        public static string createGameUserSettingsChangePicture {
+            get {
+                return ResourceManager.GetString("createGameUserSettingsChangePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First Name ähnelt.
+        /// </summary>
+        public static string createGameUserSettingsFirstname {
+            get {
+                return ResourceManager.GetString("createGameUserSettingsFirstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Playername ähnelt.
+        /// </summary>
+        public static string createGameUserSettingsGBCaption {
+            get {
+                return ResourceManager.GetString("createGameUserSettingsGBCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Last Name ähnelt.
+        /// </summary>
+        public static string createGameUserSettingsLastname {
+            get {
+                return ResourceManager.GetString("createGameUserSettingsLastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        public static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
             }
         }
         

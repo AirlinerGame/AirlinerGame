@@ -120,14 +120,35 @@
   <data name="btnClose" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="btnOkay" xml:space="preserve">
+    <value>Okay</value>
+  </data>
   <data name="btnSaveAndClose" xml:space="preserve">
     <value>Save &amp; Close</value>
   </data>
   <data name="createGameAirlineSettingsCaption" xml:space="preserve">
     <value>Airline Settings</value>
   </data>
+  <data name="createGameErrorNameMissing" xml:space="preserve">
+    <value>You must enter a firstname and lastname</value>
+  </data>
   <data name="createGameUserSettingsCaption" xml:space="preserve">
     <value>Player Settings</value>
+  </data>
+  <data name="createGameUserSettingsChangePicture" xml:space="preserve">
+    <value>Select Picture...</value>
+  </data>
+  <data name="createGameUserSettingsFirstname" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="createGameUserSettingsGBCaption" xml:space="preserve">
+    <value>Playername</value>
+  </data>
+  <data name="createGameUserSettingsLastname" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="menuLoadGame" xml:space="preserve">
     <value>Load Game</value>
