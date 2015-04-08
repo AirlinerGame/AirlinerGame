@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using AirPlaner.Game.Api;
 using AirPlaner.IO;
+using AirPlaner.IO.Settings;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -27,6 +28,11 @@ namespace AirPlaner.Screen
 
         public AirPlanerGame InternalGame { get; set; }
         public ScriptLoader ScriptLoader { get; set; }
+
+        public Savegame Settings
+        {
+            get { return InternalGame.UserSettings.Settings; }
+        }
 
         public ScreenManager(AirPlanerGame game)
             : base(game)

@@ -1,4 +1,5 @@
-﻿local playerPanel = ui.CreateGroupPanel();
+﻿-- Player/Manager Settings
+local playerPanel = ui.CreateGroupPanel();
 playerPanel.Width = ui.GetScreenWidth() / 2 - 50;
 playerPanel.Height = 225;
 playerPanel.Top = 20;
@@ -9,11 +10,11 @@ ui.SetColor("CornflowerBlue", playerPanel);
 
 local boxQuarter = (playerPanel.Width / 4);
 local playerPicture = ui.CreateImageBox();
+playerPicture.Image = context.ProfilePicture;
 playerPicture.Width = boxQuarter * 0.9;
 playerPicture.Height = playerPicture.Width;
 playerPicture.Left = 20;
 playerPicture.Top = 20;
-ui.SetImage(playerPicture, context.ProfilePicture);
 ui.SetImageMode(playerPicture, "Stretched");
 playerPanel.Add(playerPicture);
 
@@ -22,6 +23,7 @@ changePictureBtn.Width = playerPicture.Width;
 changePictureBtn.Text = ui.GetText("createGameUserSettingsChangePicture");
 changePictureBtn.Left = playerPicture.Left;
 changePictureBtn.Top = playerPicture.Top + playerPicture.Height + 5;
+ui.SetCallMethod(changePictureBtn, context, "ChangeUserPictureButtonOnClick");
 playerPanel.Add(changePictureBtn);
 
 local playerGroupBox = ui.CreateGroupBox();
@@ -67,9 +69,10 @@ playerGroupBox.Add(lastName);
 
 playerPanel.Add(playerGroupBox);
 
+-- Airline Settings
 local airlinePanel = ui.CreateGroupPanel();
 airlinePanel.Width = playerPanel.Width;
-airlinePanel.Height = 300;
+airlinePanel.Height = 225;
 airlinePanel.Top = 20;
 airlinePanel.Left = playerPanel.Left + playerPanel.Width + 20;
 
@@ -77,8 +80,51 @@ airlinePanel.Text = ui.GetText("createGameAirlineSettingsCaption");
 
 ui.SetColor("CornflowerBlue", airlinePanel);
 
+local airlineImage = ui.CreateImageBox();
+airlineImage.Image = context.AirlinePicture;
+airlineImage.Width = boxQuarter * 0.9;
+airlineImage.Height = airlineImage.Width;
+airlineImage.Left = 20;
+airlineImage.Top = 20;
+ui.SetImageMode(airlineImage, "Stretched");
+airlinePanel.Add(airlineImage);
+
+local airlineImageChangeBtn = ui.CreateButton();
+airlineImageChangeBtn.Text = ui.GetText("createGameUserSettingsChangePicture");
+airlineImageChangeBtn.Width = airlineImage.Width;
+airlineImageChangeBtn.Top = airlineImage.Top + airlineImage.Height + 5;
+airlineImageChangeBtn.Left = airlineImage.Left;
+ui.SetCallMethod(airlineImageChangeBtn, context, "ChangeAirlinePictureButtonOnClick");
+airlinePanel.Add(airlineImageChangeBtn);
+
+local airlineGroupBox = ui.CreateGroupBox();
+airlineGroupBox.Text = ui.GetText("createGameAirlineGBCaption");
+airlineGroupBox.Left = airlineImage.Left + airlineImage.Width + 20;
+airlineGroupBox.Top = 10;
+airlineGroupBox.Width = boxQuarter * 2.5;
+airlineGroupBox.Height = 100;
+
+local airlineNameLabel = ui.CreateLabel();
+airlineNameLabel.Width = airlineGroupBox.Width - 20;
+airlineNameLabel.Left = 10;
+airlineNameLabel.Top = 5;
+airlineNameLabel.Text = ui.GetText("createGameAirlineSettingsName");
+
+local airlineName = ui.CreateTextBox();
+airlineName.Top = airlineNameLabel.Top + airlineNameLabel.Height + 5;
+airlineName.Left = airlineNameLabel.Left;
+airlineName.Width = firstName.Width * 1.5;
+airlineName.Init();
+airlineName.Refresh();
+
+context.AirlineName = airlineName;
+
+airlineGroupBox.Add(airlineNameLabel);
+airlineGroupBox.Add(airlineName);
+airlinePanel.Add(airlineGroupBox);
+
 ui.AddToManager(playerPanel);
---ui.AddToManager(airlinePanel);
+ui.AddToManager(airlinePanel);
 
 local startGameBtn = ui.CreateButton();
 startGameBtn.Text = ui.GetText("menuStartGame");

@@ -79,6 +79,15 @@ namespace AirPlaner {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open ähnelt.
+        /// </summary>
+        public static string btnOpen {
+            get {
+                return ResourceManager.GetString("btnOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save &amp; Close ähnelt.
         /// </summary>
         public static string btnSaveAndClose {
@@ -90,9 +99,36 @@ namespace AirPlaner {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Airline Settings ähnelt.
         /// </summary>
+        public static string createGameAirlineGBCaption {
+            get {
+                return ResourceManager.GetString("createGameAirlineGBCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Airline Settings ähnelt.
+        /// </summary>
         public static string createGameAirlineSettingsCaption {
             get {
                 return ResourceManager.GetString("createGameAirlineSettingsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Airline Name ähnelt.
+        /// </summary>
+        public static string createGameAirlineSettingsName {
+            get {
+                return ResourceManager.GetString("createGameAirlineSettingsName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You must enter a airline name ähnelt.
+        /// </summary>
+        public static string createGameErrorAirlineNameMissing {
+            get {
+                return ResourceManager.GetString("createGameErrorAirlineNameMissing", resourceCulture);
             }
         }
         
@@ -210,6 +246,15 @@ namespace AirPlaner {
         public static string txtLoading {
             get {
                 return ResourceManager.GetString("txtLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select File ähnelt.
+        /// </summary>
+        public static string txtSelectFile {
+            get {
+                return ResourceManager.GetString("txtSelectFile", resourceCulture);
             }
         }
     }

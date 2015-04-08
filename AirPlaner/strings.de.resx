@@ -123,11 +123,23 @@
   <data name="btnOkay" xml:space="preserve">
     <value>Okay</value>
   </data>
+  <data name="btnOpen" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
   <data name="btnSaveAndClose" xml:space="preserve">
     <value>Speichern &amp; Schließen</value>
   </data>
+  <data name="createGameAirlineGBCaption" xml:space="preserve">
+    <value>Airline Einstellungen</value>
+  </data>
   <data name="createGameAirlineSettingsCaption" xml:space="preserve">
     <value>Airline-Einstellungen</value>
+  </data>
+  <data name="createGameAirlineSettingsName" xml:space="preserve">
+    <value>Airline Name</value>
+  </data>
+  <data name="createGameErrorAirlineNameMissing" xml:space="preserve">
+    <value>Du musst deiner Airline einen Namen geben</value>
   </data>
   <data name="createGameErrorNameMissing" xml:space="preserve">
     <value>Sie müssen einen Vornamen und Nachnamen angeben!</value>
@@ -167,5 +179,8 @@
   </data>
   <data name="txtLoading" xml:space="preserve">
     <value>Lade Daten...</value>
+  </data>
+  <data name="txtSelectFile" xml:space="preserve">
+    <value>Datei auswählen</value>
   </data>
 </root>

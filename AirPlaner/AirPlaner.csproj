@@ -50,8 +50,11 @@
     <Compile Include="IO\MouseEventArgs.cs" />
     <Compile Include="IO\MouseHandler.cs" />
     <Compile Include="IO\MouseKey.cs" />
+    <Compile Include="IO\Settings\AirlineDetails.cs" />
     <Compile Include="IO\Settings\ApplicationSettings.cs" />
+    <Compile Include="IO\Settings\Savegame.cs" />
     <Compile Include="IO\Settings\SettingsManager.cs" />
+    <Compile Include="IO\Settings\UserDetails.cs" />
     <Compile Include="strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,6 +115,15 @@
     <Content Include="Content\CreateGameBG.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\CreateGame\alternative.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CreateGame\airplaneBG.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CreateGame\empty_airline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\CreateGame\empty_profile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -154,6 +166,7 @@
     <EmbeddedResource Include="strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

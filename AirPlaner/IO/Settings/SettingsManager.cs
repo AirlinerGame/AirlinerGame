@@ -8,9 +8,12 @@ namespace AirPlaner.IO.Settings
 
         public bool AutoSave { get; set; }
 
+        public Savegame Settings { get; private set; }
+
         public SettingsManager(AirPlanerGame game)
         {
             AutoSave = false;
+            Settings = new Savegame(this);
             Game = game;
         }
 

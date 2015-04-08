@@ -60,6 +60,11 @@ namespace AirPlaner.UI
             return Color.Black;
         }
 
+        public Texture2D GetTexture(string texture)
+        {
+            return Manager.Content.Load<Texture2D>(texture);
+        }
+
         public GroupPanel CreateGroupPanel()
         {
             var groupPanel = new GroupPanel(Manager);
