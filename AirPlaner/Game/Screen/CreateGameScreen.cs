@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using AirPlaner.Config.Entity;
 using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
 using Microsoft.Xna.Framework;
@@ -26,6 +28,7 @@ namespace AirPlaner.Game.Screen
         public Texture2D AirlinePicture { get; set; }
         public Window Window { get; set; }
         public Label ErrorText { get; set; }
+        public ComboBox TurnComboBox { get; set; }
 
         public CreateGameScreen()
         {
@@ -79,6 +82,19 @@ namespace AirPlaner.Game.Screen
 
         }
 
+        public List<TurnLength> GetTurnLengths()
+        {
+            var resultList = new List<TurnLength>
+            {
+                new TurnLength {Text = strings.txtTurnOneDay, Value = 0},
+                new TurnLength {Text = strings.txtTurnOneWeek, Value = 1},
+                new TurnLength {Text = strings.txtTurnTwoWeeks, Value = 2},
+                new TurnLength {Text = strings.txtTurnOneMonth, Value = 3}
+            };
+
+            return resultList;
+        } 
+
         public void StartGameButtonOnClick(object sender, EventArgs eventArgs)
         {
             //Check if required data is set
@@ -108,6 +124,12 @@ namespace AirPlaner.Game.Screen
             //Write Airline Settings to Savegame
             savegame.Airline.AirlinePicture = AirlinePicture;
 
+        }
+
+        public void ComboBoxSelectionOnChange(object sender, EventArgs eventArgs)
+        {
+            var selected = TurnComboBox.Items[TurnComboBox.ItemIndex] as TurnLength;
+            ScreenManager.InternalGame.UserSettings.Settings.TurnLength = selected;
         }
 
         public void ErrorMessageOkayOnClick(object sender, EventArgs eventArgs)

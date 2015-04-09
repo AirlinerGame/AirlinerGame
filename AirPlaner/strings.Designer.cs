@@ -196,6 +196,15 @@ namespace AirPlaner {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Turn Length: ähnelt.
+        /// </summary>
+        public static string lblTurnLength {
+            get {
+                return ResourceManager.GetString("lblTurnLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Load Game ähnelt.
         /// </summary>
         public static string menuLoadGame {
@@ -264,6 +273,42 @@ namespace AirPlaner {
         public static string txtSelectFile {
             get {
                 return ResourceManager.GetString("txtSelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 1 day ähnelt.
+        /// </summary>
+        public static string txtTurnOneDay {
+            get {
+                return ResourceManager.GetString("txtTurnOneDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 1 month ähnelt.
+        /// </summary>
+        public static string txtTurnOneMonth {
+            get {
+                return ResourceManager.GetString("txtTurnOneMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 1 week ähnelt.
+        /// </summary>
+        public static string txtTurnOneWeek {
+            get {
+                return ResourceManager.GetString("txtTurnOneWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 2 weeks ähnelt.
+        /// </summary>
+        public static string txtTurnTwoWeeks {
+            get {
+                return ResourceManager.GetString("txtTurnTwoWeeks", resourceCulture);
             }
         }
     }

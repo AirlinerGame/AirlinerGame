@@ -137,12 +137,35 @@ gameSettingsPanel.Top = airlinePanel.Top + airlinePanel.Height + 20;
 gameSettingsPanel.Text = "Game Settings";
 ui.SetColor("CornflowerBlue", gameSettingsPanel);
 
+local gameSettingsTurnLabel = ui.CreateLabel();
+gameSettingsTurnLabel.Left = 10;
+gameSettingsTurnLabel.Top = 10;
+gameSettingsTurnLabel.Width = 80;
+gameSettingsTurnLabel.Text = ui.GetText("lblTurnLength");
+
+gameSettingsPanel.Add(gameSettingsTurnLabel);
+
+local turnComboBox = ui.CreateComboBox();
+turnComboBox.Left = gameSettingsTurnLabel.Left + gameSettingsTurnLabel.Width;
+turnComboBox.Top = gameSettingsTurnLabel.Top;
+turnComboBox.Width = 125;
+
+ui.AddItems(turnComboBox, context.GetTurnLengths());
+turnComboBox.ItemIndex = 1; --Set One Week as Default Turn Length
+
+ui.SetSelectionMethod(turnComboBox, context, "ComboBoxSelectionOnChange");
+
+turnComboBox.Init();
+turnComboBox.Refresh();
+context.TurnComboBox = turnComboBox;
+
+gameSettingsPanel.Add(turnComboBox);
 
 local startGameBtn = ui.CreateButton();
 startGameBtn.Text = ui.GetText("menuStartGame");
 startGameBtn.Width = 200;
-startGameBtn.Top = playerPanel.Top + playerPanel.Height + 10;
-startGameBtn.Left = playerPanel.Left;
+startGameBtn.Top = gameSettingsPanel.Top + gameSettingsPanel.Height + 10;
+startGameBtn.Left = gameSettingsPanel.Left + gameSettingsPanel.OriginWidth - startGameBtn.Width;
 startGameBtn.Color = ui.GetColor("LawnGreen");
 ui.SetCallMethod(startGameBtn, context, "StartGameButtonOnClick");
 

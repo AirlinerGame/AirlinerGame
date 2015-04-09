@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="AirPlanerGame.cs" />
     <Compile Include="Config\Entity\Language.cs" />
+    <Compile Include="Config\Entity\TurnLength.cs" />
     <Compile Include="Game\Api\ScriptLoader.cs" />
     <Compile Include="Game\Physics\Box.cs" />
     <Compile Include="Game\Screen\BackgroundScreen.cs" />

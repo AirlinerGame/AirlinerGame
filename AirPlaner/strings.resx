@@ -162,6 +162,9 @@
   <data name="error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="lblTurnLength" xml:space="preserve">
+    <value>Turn Length:</value>
+  </data>
   <data name="menuLoadGame" xml:space="preserve">
     <value>Load Game</value>
   </data>
@@ -185,5 +188,17 @@
   </data>
   <data name="txtSelectFile" xml:space="preserve">
     <value>Select File</value>
+  </data>
+  <data name="txtTurnOneDay" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="txtTurnOneMonth" xml:space="preserve">
+    <value>1 month</value>
+  </data>
+  <data name="txtTurnOneWeek" xml:space="preserve">
+    <value>1 week</value>
+  </data>
+  <data name="txtTurnTwoWeeks" xml:space="preserve">
+    <value>2 weeks</value>
   </data>
 </root>

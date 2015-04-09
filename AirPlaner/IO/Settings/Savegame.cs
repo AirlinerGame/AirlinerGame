@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Xna.Framework.Graphics;
+using AirPlaner.Config.Entity;
 
 namespace AirPlaner.IO.Settings
 {
@@ -10,6 +10,7 @@ namespace AirPlaner.IO.Settings
 
         public UserDetails Player;
         public AirlineDetails Airline;
+        public TurnLength TurnLength;
 
         public Savegame()
         {

@@ -82,6 +82,7 @@ namespace AirPlaner
             UserData.RegisterType<Button>();
             UserData.RegisterType<Control>();
             UserData.RegisterType<Container>();
+            UserData.RegisterType<ComboBox>();
             UserData.RegisterType<GroupPanel>();
             UserData.RegisterType<ImageBox>();
             UserData.RegisterType<GroupBox>();
@@ -95,6 +96,7 @@ namespace AirPlaner
 
             UserData.RegisterType<BackgroundScene>();
             UserData.RegisterType<CreateGameScreen>();
+            UserData.RegisterType<TurnLength>();
 
             AddInitialScreens();
 

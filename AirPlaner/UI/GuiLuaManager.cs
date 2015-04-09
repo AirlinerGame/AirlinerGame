@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MoonSharp.Interpreter;
@@ -113,6 +114,14 @@ namespace AirPlaner.UI
             return groupBox;
         }
 
+        public ComboBox CreateComboBox()
+        {
+            var comboBox = new ComboBox(Manager);
+            comboBox.TextColor = Color.White;
+
+            return comboBox;
+        }
+
         public Window CreateWindow()
         {
             var window = new Window(Manager) {TextColor = Color.White};
@@ -122,6 +131,16 @@ namespace AirPlaner.UI
         public void AddToManager(Component component)
         {
             Manager.Add(component);
+        }
+
+        public void AddItem(ComboBox comboBox, object value)
+        {
+            comboBox.Items.Add(value);
+        }
+
+        public void AddItems(ComboBox comboBox, List<object> value)
+        {
+            comboBox.Items.AddRange(value);
         }
 
         public void SetImage(ImageBox imageBox, Texture2D texture)
@@ -145,16 +164,28 @@ namespace AirPlaner.UI
             }
         }
 
-        public void SetCallMethod(Button button, object context, string methodName)
+        public void SetCallMethod(Control control, object context, string methodName)
         {
             var type = context.GetType();
             var method = type.GetMethod(methodName);
 
-            var buttonEvent = typeof (Button).GetEvent("Click");
+            var buttonEvent = typeof (Control).GetEvent("Click");
             var delegateT = Delegate.CreateDelegate(buttonEvent.EventHandlerType, context, method);
             var addMethod = buttonEvent.GetAddMethod();
             Object[] addHandlers = { delegateT };
-            addMethod.Invoke(button, addHandlers);
+            addMethod.Invoke(control, addHandlers);
+        }
+
+        public void SetSelectionMethod(ComboBox comboBox, object context, string methodName)
+        {
+            var type = context.GetType();
+            var method = type.GetMethod(methodName);
+
+            var comboBoxEvent = typeof(ComboBox).GetEvent("ItemIndexChanged");
+            var delegateT = Delegate.CreateDelegate(comboBoxEvent.EventHandlerType, context, method);
+            var addMethod = comboBoxEvent.GetAddMethod();
+            Object[] addHandlers = { delegateT };
+            addMethod.Invoke(comboBox, addHandlers);
         }
     }
 }
