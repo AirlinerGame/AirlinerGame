@@ -177,6 +177,9 @@
   <data name="settingsWindowTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="txtFilename" xml:space="preserve">
+    <value>Filename:</value>
+  </data>
   <data name="txtLoading" xml:space="preserve">
     <value>Loading...</value>
   </data>

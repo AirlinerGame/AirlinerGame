@@ -16,6 +16,8 @@ playerPicture.Height = playerPicture.Width;
 playerPicture.Left = 20;
 playerPicture.Top = 20;
 ui.SetImageMode(playerPicture, "Stretched");
+context.UserImageBox = playerPicture;
+
 playerPanel.Add(playerPicture);
 
 local changePictureBtn = ui.CreateButton();
@@ -126,6 +128,16 @@ airlinePanel.Add(airlineGroupBox);
 ui.AddToManager(playerPanel);
 ui.AddToManager(airlinePanel);
 
+--Add Game Settings Panel
+local gameSettingsPanel = ui.CreateGroupPanel();
+gameSettingsPanel.Width = airlinePanel.Width;
+gameSettingsPanel.Height = 200;
+gameSettingsPanel.Left = airlinePanel.Left;
+gameSettingsPanel.Top = airlinePanel.Top + airlinePanel.Height + 20;
+gameSettingsPanel.Text = "Game Settings";
+ui.SetColor("CornflowerBlue", gameSettingsPanel);
+
+
 local startGameBtn = ui.CreateButton();
 startGameBtn.Text = ui.GetText("menuStartGame");
 startGameBtn.Width = 200;
@@ -134,6 +146,7 @@ startGameBtn.Left = playerPanel.Left;
 startGameBtn.Color = ui.GetColor("LawnGreen");
 ui.SetCallMethod(startGameBtn, context, "StartGameButtonOnClick");
 
+ui.AddToManager(gameSettingsPanel);
 ui.AddToManager(startGameBtn);
 
 -- Define Error Window for missing values

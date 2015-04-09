@@ -241,6 +241,15 @@ namespace AirPlaner {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Filename: ähnelt.
+        /// </summary>
+        public static string txtFilename {
+            get {
+                return ResourceManager.GetString("txtFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Loading... ähnelt.
         /// </summary>
         public static string txtLoading {
