@@ -124,6 +124,9 @@ namespace AirPlaner.Game.Screen
             //Write Airline Settings to Savegame
             savegame.Airline.AirlinePicture = AirlinePicture;
 
+            //Switch to created GameScreen
+            LoadingScreen.Load(ScreenManager, true, strings.txtLoading, new AirlinerGameScreen());
+            ScreenManager.RemoveScreen(this);
         }
 
         public void ComboBoxSelectionOnChange(object sender, EventArgs eventArgs)

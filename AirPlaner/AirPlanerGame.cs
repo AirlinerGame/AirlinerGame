@@ -96,6 +96,7 @@ namespace AirPlaner
 
             UserData.RegisterType<BackgroundScene>();
             UserData.RegisterType<CreateGameScreen>();
+            UserData.RegisterType<AirlinerGameScreen>();
             UserData.RegisterType<TurnLength>();
 
             AddInitialScreens();
