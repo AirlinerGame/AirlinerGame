@@ -129,7 +129,7 @@ namespace AirPlaner.Game.Screen
         public void ComboBoxSelectionOnChange(object sender, EventArgs eventArgs)
         {
             var selected = TurnComboBox.Items[TurnComboBox.ItemIndex] as TurnLength;
-            ScreenManager.InternalGame.UserSettings.Settings.TurnLength = selected;
+            ScreenManager.Settings.TurnLength = selected;
         }
 
         public void ErrorMessageOkayOnClick(object sender, EventArgs eventArgs)
