@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using AirPlaner.UI.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MoonSharp.Interpreter;
 using TomShane.Neoforce.Controls;
+using Button = TomShane.Neoforce.Controls.Button;
 
 namespace AirPlaner.UI
 {
@@ -12,10 +15,12 @@ namespace AirPlaner.UI
     {
 
         public Manager Manager { get; private set; }
+        public AirPlanerGame Game { get; set; }
 
-        public GuiLuaManager(Manager manager)
+        public GuiLuaManager(Manager manager, AirPlanerGame game)
         {
             Manager = manager;
+            Game = game;
         }
 
         public int GetScreenWidth()
@@ -61,6 +66,11 @@ namespace AirPlaner.UI
             return Color.Black;
         }
 
+        public Color CreateColor(string color, float alpha)
+        {
+            return new Color(GetColor(color), alpha);
+        }
+
         public Texture2D GetTexture(string texture)
         {
             return Manager.Content.Load<Texture2D>(texture);
@@ -82,10 +92,24 @@ namespace AirPlaner.UI
             return button;
         }
 
+        public ImageButton CreateImageButton()
+        {
+            var imageButton = new ImageButton(Manager, Game);
+            imageButton.TextColor = Color.White;
+
+            return imageButton;
+        }
+
         public SideBar CreateSideBar()
         {
             var sideBar = new SideBar(Manager);
             return sideBar;
+        }
+
+        public Panel CreatePanel()
+        {
+            var panel = new Panel(Manager);
+            return panel;
         }
 
         public ImageBox CreateImageBox()
@@ -162,6 +186,16 @@ namespace AirPlaner.UI
                     imageBox.SizeMode = SizeMode.Stretched;
                     break;
             }
+        }
+
+        public Texture2D TextureFromFile(string path)
+        {
+            Texture2D result = null;
+            using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                result = Texture2D.FromStream(Manager.GraphicsDevice, stream);
+            }
+            return result;
         }
 
         public void SetCallMethod(Control control, object context, string methodName)

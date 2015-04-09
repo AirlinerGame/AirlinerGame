@@ -6,11 +6,13 @@ using AirPlaner.Config.Entity;
 using AirPlaner.Game.Screen;
 using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
+using AirPlaner.UI.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
 using TomShane.Neoforce.Controls;
+using Button = TomShane.Neoforce.Controls.Button;
 
 namespace AirPlaner
 {
@@ -87,6 +89,7 @@ namespace AirPlaner
             UserData.RegisterType<ImageBox>();
             UserData.RegisterType<GroupBox>();
             UserData.RegisterType<Label>();
+            UserData.RegisterType<Panel>();
             UserData.RegisterType<SideBar>();
             UserData.RegisterType<TextBox>();
             UserData.RegisterType<Window>();
@@ -98,6 +101,7 @@ namespace AirPlaner
             UserData.RegisterType<CreateGameScreen>();
             UserData.RegisterType<AirlinerGameScreen>();
             UserData.RegisterType<TurnLength>();
+            UserData.RegisterType<ImageButton>();
 
             AddInitialScreens();
 

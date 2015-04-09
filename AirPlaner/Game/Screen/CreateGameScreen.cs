@@ -46,7 +46,7 @@ namespace AirPlaner.Game.Screen
 
             if (_backgroundTexture == null)
             {
-                _backgroundTexture = _content.Load<Texture2D>("CreateGame/alternative");
+                _backgroundTexture = _content.Load<Texture2D>("AirlinerBG");
                 ProfilePicture = ScreenManager.Settings.Player.PlayerPicture ?? _content.Load<Texture2D>("CreateGame/empty_profile");
                 AirlinePicture = ScreenManager.Settings.Airline.AirlinePicture ?? _content.Load<Texture2D>("CreateGame/empty_airline");
             }

@@ -79,7 +79,7 @@ namespace AirPlaner.Game.Api
         {
             Unload();
             Script = new Script();
-            Script.Globals["ui"] = new GuiLuaManager(ScriptLoader.ScreenManager.InternalGame.GuiManager);
+            Script.Globals["ui"] = new GuiLuaManager(ScriptLoader.ScreenManager.InternalGame.GuiManager, ScriptLoader.ScreenManager.InternalGame);
         }
 
         public void Unload()

@@ -6,7 +6,7 @@ playerPanel.Top = 20;
 playerPanel.Left = 40;
 
 playerPanel.Text = ui.GetText("createGameUserSettingsCaption");
-ui.SetColor("CornflowerBlue", playerPanel);
+playerPanel.Color = ui.CreateColor("CornflowerBlue", 0.9);
 
 local boxQuarter = (playerPanel.Width / 4);
 local playerPicture = ui.CreateImageBox();
@@ -77,10 +77,8 @@ airlinePanel.Width = playerPanel.Width;
 airlinePanel.Height = 225;
 airlinePanel.Top = 20;
 airlinePanel.Left = playerPanel.Left + playerPanel.Width + 20;
-
+airlinePanel.Color = ui.CreateColor("CornflowerBlue", 0.9);
 airlinePanel.Text = ui.GetText("createGameAirlineSettingsCaption");
-
-ui.SetColor("CornflowerBlue", airlinePanel);
 
 local airlineImage = ui.CreateImageBox();
 airlineImage.Image = context.AirlinePicture;
@@ -135,7 +133,7 @@ gameSettingsPanel.Height = 200;
 gameSettingsPanel.Left = airlinePanel.Left;
 gameSettingsPanel.Top = airlinePanel.Top + airlinePanel.Height + 20;
 gameSettingsPanel.Text = "Game Settings";
-ui.SetColor("CornflowerBlue", gameSettingsPanel);
+gameSettingsPanel.Color = ui.CreateColor("CornflowerBlue", 0.9);
 
 local gameSettingsTurnLabel = ui.CreateLabel();
 gameSettingsTurnLabel.Left = 10;
