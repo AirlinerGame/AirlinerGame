@@ -250,11 +250,74 @@ namespace AirPlaner {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Successful Routes ähnelt.
+        /// </summary>
+        public static string txtAirlineRouteSuccess {
+            get {
+                return ResourceManager.GetString("txtAirlineRouteSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Calendar ähnelt.
+        /// </summary>
+        public static string txtCalendar {
+            get {
+                return ResourceManager.GetString("txtCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cashflow ähnelt.
+        /// </summary>
+        public static string txtCashflow {
+            get {
+                return ResourceManager.GetString("txtCashflow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Back to Game ähnelt.
+        /// </summary>
+        public static string txtContinueGame {
+            get {
+                return ResourceManager.GetString("txtContinueGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dashboard ähnelt.
+        /// </summary>
+        public static string txtDashboard {
+            get {
+                return ResourceManager.GetString("txtDashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exit to Desktop ähnelt.
+        /// </summary>
+        public static string txtExitToDesktop {
+            get {
+                return ResourceManager.GetString("txtExitToDesktop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Filename: ähnelt.
         /// </summary>
         public static string txtFilename {
             get {
                 return ResourceManager.GetString("txtFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Finances ähnelt.
+        /// </summary>
+        public static string txtFinances {
+            get {
+                return ResourceManager.GetString("txtFinances", resourceCulture);
             }
         }
         
@@ -268,11 +331,56 @@ namespace AirPlaner {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        public static string txtSave {
+            get {
+                return ResourceManager.GetString("txtSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save and Close ähnelt.
+        /// </summary>
+        public static string txtSaveAndExit {
+            get {
+                return ResourceManager.GetString("txtSaveAndExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save as... ähnelt.
+        /// </summary>
+        public static string txtSaveAs {
+            get {
+                return ResourceManager.GetString("txtSaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Select File ähnelt.
         /// </summary>
         public static string txtSelectFile {
             get {
                 return ResourceManager.GetString("txtSelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Game Settings ähnelt.
+        /// </summary>
+        public static string txtSettings {
+            get {
+                return ResourceManager.GetString("txtSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suggestions ähnelt.
+        /// </summary>
+        public static string txtSuggestion {
+            get {
+                return ResourceManager.GetString("txtSuggestion", resourceCulture);
             }
         }
         

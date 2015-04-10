@@ -180,14 +180,50 @@
   <data name="settingsWindowTitle" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
+  <data name="txtAirlineRouteSuccess" xml:space="preserve">
+    <value>Erfolgreiche Flugrouten</value>
+  </data>
+  <data name="txtCalendar" xml:space="preserve">
+    <value>Kalendar</value>
+  </data>
+  <data name="txtCashflow" xml:space="preserve">
+    <value>Umsätze</value>
+  </data>
+  <data name="txtContinueGame" xml:space="preserve">
+    <value>Zurueck zum Spiel</value>
+  </data>
+  <data name="txtDashboard" xml:space="preserve">
+    <value>Kontrollzentrum</value>
+  </data>
+  <data name="txtExitToDesktop" xml:space="preserve">
+    <value>Zum Desktop</value>
+  </data>
   <data name="txtFilename" xml:space="preserve">
     <value>Dateiname:</value>
+  </data>
+  <data name="txtFinances" xml:space="preserve">
+    <value>Finanzen</value>
   </data>
   <data name="txtLoading" xml:space="preserve">
     <value>Lade Daten...</value>
   </data>
+  <data name="txtSave" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="txtSaveAndExit" xml:space="preserve">
+    <value>Speichern und Beenden</value>
+  </data>
+  <data name="txtSaveAs" xml:space="preserve">
+    <value>Speichern unter...</value>
+  </data>
   <data name="txtSelectFile" xml:space="preserve">
     <value>Datei auswählen</value>
+  </data>
+  <data name="txtSettings" xml:space="preserve">
+    <value>Spieleinstellungen</value>
+  </data>
+  <data name="txtSuggestion" xml:space="preserve">
+    <value>Empfehlungen</value>
   </data>
   <data name="txtTurnOneDay" xml:space="preserve">
     <value>1 Tag</value>

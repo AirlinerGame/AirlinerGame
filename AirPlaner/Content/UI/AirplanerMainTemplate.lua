@@ -9,7 +9,7 @@ btnDashboard.Height = 50;
 btnDashboard.Width = sidebar.OriginWidth - 2;
 btnDashboard.Left = 0;
 btnDashboard.Top = 0;
-btnDashboard.Text = "Dashboard";
+btnDashboard.Text = ui.GetText("txtDashboard");
 btnDashboard.TextColor = ui.GetColor("White");
 btnDashboard.Color = ui.CreateColor("White", 0.1);
 btnDashboard.HoverColor = ui.CreateColor("Red", 0.4);
@@ -21,7 +21,7 @@ btnFinances.Height = 50;
 btnFinances.Width = sidebar.OriginWidth - 2;
 btnFinances.Left = 0;
 btnFinances.Top = btnDashboard.Height;
-btnFinances.Text = "Finanzen";
+btnFinances.Text = ui.GetText("txtFinances");
 btnFinances.TextColor = ui.GetColor("White");
 btnFinances.Color = ui.CreateColor("White", 0.1);
 btnFinances.HoverColor = ui.CreateColor("Red", 0.4);
@@ -47,7 +47,7 @@ headerLabel.Height = topBar.Height / 2.5;
 headerLabel.Width = topBar.Width - headerLabel.Left - 200;
 headerLabel.Left = companyLogo.Width + 20;
 headerLabel.Top = topBar.Height / 2 - headerLabel.Height / 2;
-headerLabel.Text = context.Data.Airline.Name .. " Dashboard";
+headerLabel.Text = context.Data.Airline.Name .. " " .. ui.GetText("txtDashboard");
 
 topBar.Add(headerLabel);
 

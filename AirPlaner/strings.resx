@@ -180,14 +180,50 @@
   <data name="settingsWindowTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="txtAirlineRouteSuccess" xml:space="preserve">
+    <value>Successful Routes</value>
+  </data>
+  <data name="txtCalendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="txtCashflow" xml:space="preserve">
+    <value>Cashflow</value>
+  </data>
+  <data name="txtContinueGame" xml:space="preserve">
+    <value>Back to Game</value>
+  </data>
+  <data name="txtDashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="txtExitToDesktop" xml:space="preserve">
+    <value>Exit to Desktop</value>
+  </data>
   <data name="txtFilename" xml:space="preserve">
     <value>Filename:</value>
+  </data>
+  <data name="txtFinances" xml:space="preserve">
+    <value>Finances</value>
   </data>
   <data name="txtLoading" xml:space="preserve">
     <value>Loading...</value>
   </data>
+  <data name="txtSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="txtSaveAndExit" xml:space="preserve">
+    <value>Save and Close</value>
+  </data>
+  <data name="txtSaveAs" xml:space="preserve">
+    <value>Save as...</value>
+  </data>
   <data name="txtSelectFile" xml:space="preserve">
     <value>Select File</value>
+  </data>
+  <data name="txtSettings" xml:space="preserve">
+    <value>Game Settings</value>
+  </data>
+  <data name="txtSuggestion" xml:space="preserve">
+    <value>Suggestions</value>
   </data>
   <data name="txtTurnOneDay" xml:space="preserve">
     <value>1 day</value>
