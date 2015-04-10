@@ -73,6 +73,7 @@
     <Compile Include="UI\Components\HeaderLabel.cs" />
     <Compile Include="UI\Components\ImageButton.cs" />
     <Compile Include="UI\Components\MoneyLabel.cs" />
+    <Compile Include="UI\Components\OpenFileDialog.cs" />
     <Compile Include="UI\Components\SerializableTexture2D.cs" />
     <Compile Include="UI\GuiLuaManager.cs" />
     <Compile Include="UI\GUIManager.cs" />
