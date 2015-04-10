@@ -16,6 +16,7 @@ local padding = 10;
 local btnHeight = mainMenu.OriginHeight / 7;
 
 local btnBackToGame = ui.CreateImageButton();
+btnBackToGame.Image = ui.TextureFromFile("Content/AirlinerGame/MainMenu/return.png");
 btnBackToGame.Width = mainMenu.ClientWidth;
 btnBackToGame.Height = btnHeight;
 btnBackToGame.Top = 0;
@@ -25,6 +26,7 @@ ui.SetCallMethod(btnBackToGame, context, "MenuResumeGameButtonOnClick");
 mainMenu.Add(btnBackToGame);
 
 local btnSaveGame = ui.CreateImageButton();
+btnSaveGame.Image = ui.TextureFromFile("Content/AirlinerGame/MainMenu/save.png");
 btnSaveGame.Width = mainMenu.OriginWidth - 15;
 btnSaveGame.Height = btnHeight;
 btnSaveGame.Top = btnBackToGame.Top + btnBackToGame.Height;
@@ -33,6 +35,7 @@ btnSaveGame.Text = "Save Game";
 mainMenu.Add(btnSaveGame);
 
 local btnSaveGameAs = ui.CreateImageButton();
+btnSaveGameAs.Image = ui.TextureFromFile("Content/AirlinerGame/MainMenu/save.png");
 btnSaveGameAs.Width = mainMenu.OriginWidth - 15;
 btnSaveGameAs.Height = btnHeight;
 btnSaveGameAs.Top = btnSaveGame.Top + btnSaveGame.Height;
@@ -41,6 +44,7 @@ btnSaveGameAs.Text = "Save Game As...";
 mainMenu.Add(btnSaveGameAs);
 
 local btnSettings = ui.CreateImageButton();
+btnSettings.Image = ui.TextureFromFile("Content/AirlinerGame/MainMenu/settings.png");
 btnSettings.Width = mainMenu.OriginWidth - 15;
 btnSettings.Height = btnHeight;
 btnSettings.Top = btnSaveGameAs.Top + btnSaveGameAs.Height;
@@ -49,6 +53,7 @@ btnSettings.Text = "Game Settings";
 mainMenu.Add(btnSettings);
 
 local btnExitGame = ui.CreateImageButton();
+btnExitGame.Image = ui.TextureFromFile("Content/AirlinerGame/MainMenu/close.png");
 btnExitGame.Width = mainMenu.OriginWidth - 15;
 btnExitGame.Height = btnHeight;
 btnExitGame.Top = btnSettings.Top + btnSettings.Height;
@@ -57,6 +62,7 @@ btnExitGame.Text = "Return to Desktop";
 mainMenu.Add(btnExitGame);
 
 local btnSaveAndExit = ui.CreateImageButton();
+btnSaveAndExit.Image = ui.TextureFromFile("Content/AirlinerGame/MainMenu/standby.png");
 btnSaveAndExit.Width = mainMenu.OriginWidth - 15;
 btnSaveAndExit.Height = btnHeight;
 btnSaveAndExit.Top = btnExitGame.Top + btnExitGame.Height;
