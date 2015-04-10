@@ -70,14 +70,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="UI\Components\Button.cs" />
-    <Compile Include="UI\Components\CheckBox.cs" />
-    <Compile Include="UI\Components\DropDown.cs" />
     <Compile Include="UI\Components\HeaderLabel.cs" />
-    <Compile Include="UI\Components\IGuiItem.cs" />
     <Compile Include="UI\Components\ImageButton.cs" />
-    <Compile Include="UI\Components\InputText.cs" />
-    <Compile Include="UI\Components\Label.cs" />
     <Compile Include="UI\Components\SerializableTexture2D.cs" />
     <Compile Include="UI\GuiLuaManager.cs" />
     <Compile Include="UI\GUIManager.cs" />
