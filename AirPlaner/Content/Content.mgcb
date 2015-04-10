@@ -30,3 +30,9 @@
 /processorParam:TextureFormat=Compressed
 /build:../../../../../../Desktop/font.spritefont
 
+#begin ../../../../../../Desktop/headerfont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:../../../../../../Desktop/headerfont.spritefont
+

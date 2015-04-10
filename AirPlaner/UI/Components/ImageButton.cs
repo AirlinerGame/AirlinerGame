@@ -12,11 +12,16 @@ namespace AirPlaner.UI.Components
 
         private Texture2D _border;
         private Color _borderColor;
+        public Color HoverColor { get; set; }
+        private Color _normalColor;
 
         public int Padding { get; set; }
 
         public ImageButton(Manager manager, AirPlanerGame game) : base(manager)
         {
+            HoverColor = Color.Red;
+            _normalColor = Color.Transparent;
+
             Padding = 15;
             _image = new ImageBox(manager) {Width = 16, Height = 16};
             _image.Color = Color.White;
@@ -67,8 +72,8 @@ namespace AirPlaner.UI.Components
             {
                 if (_image != null)
                 {
-                    _image.Left = Padding + value;
-                    _label.Left = Padding + value + _image.Width + Padding;
+                    _image.Left = Padding;
+                    _label.Left = Padding + _image.Width + Padding;
                 }
                 base.Left = value;
             }
@@ -81,8 +86,8 @@ namespace AirPlaner.UI.Components
             {
                 if (_image != null)
                 {
-                    _image.Top = value + (Height / 2 - _image.Height / 2);
-                    _label.Top = value + (Height / 2 - _label.Height / 2);
+                    _image.Top = Height / 2 - _image.Height / 2;
+                    _label.Top = Height / 2 - _label.Height / 2;
                 }
                 base.Top = value;
             }
@@ -133,6 +138,10 @@ namespace AirPlaner.UI.Components
             set
             {
                 _borderColor = Color.Lerp(value, Color.Black, 0.80f);
+                if (!value.Equals(HoverColor))
+                {
+                    _normalColor = value;                    
+                }
                 base.Color = value;
             }
         }
@@ -141,6 +150,17 @@ namespace AirPlaner.UI.Components
         {
             //Draw Border
             //spriteBatch.Draw(SimpleTexture, new Rectangle(20, 50, 100, 1), Color.Blue);
+            if (Hovered)
+            {
+                Color = HoverColor;
+            }
+            else
+            {
+                if (Color.Equals(HoverColor))
+                {
+                    Color = _normalColor;
+                }
+            }
             base.DrawControl(renderer, rect, gameTime);
             renderer.SpriteBatch.Draw(_border, new Rectangle(Left, rect.Bottom - 1, Width, 1), _borderColor);
         }

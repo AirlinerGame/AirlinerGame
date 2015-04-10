@@ -23,6 +23,7 @@ namespace AirPlaner.Game.Screen
         public TextBox AirlineName { get; set; }
 
         public ImageBox UserImageBox { get; set; }
+        public ImageBox AirlineImageBox { get; set; }
 
         public Texture2D ProfilePicture { get; set; }
         public Texture2D AirlinePicture { get; set; }
@@ -79,7 +80,22 @@ namespace AirPlaner.Game.Screen
 
         public void ChangeAirlinePictureButtonOnClick(object sender, EventArgs eventArgs)
         {
+            OpenFileDialog ofDialog = new OpenFileDialog(ScreenManager);
 
+            ofDialog.Show();
+
+            ofDialog.Closed += delegate
+            {
+                if (!string.IsNullOrEmpty(ofDialog.SelectedFile))
+                {
+                    using (FileStream stream = new FileStream(ofDialog.SelectedFile, FileMode.Open, FileAccess.Read))
+                    {
+                        AirlinePicture = Texture2D.FromStream(ScreenManager.GraphicsDevice, stream);
+                    }
+                    AirlineImageBox.Image = AirlinePicture;
+                    AirlineImageBox.Refresh();
+                }
+            };
         }
 
         public List<TurnLength> GetTurnLengths()
@@ -123,6 +139,7 @@ namespace AirPlaner.Game.Screen
 
             //Write Airline Settings to Savegame
             savegame.Airline.AirlinePicture = AirlinePicture;
+            savegame.Airline.Name = AirlineName.Text;
 
             //Switch to created GameScreen
             LoadingScreen.Load(ScreenManager, true, strings.txtLoading, new AirlinerGameScreen());
@@ -172,7 +189,7 @@ namespace AirPlaner.Game.Screen
         public OpenFileDialog(ScreenManager screenManager) : base(screenManager.InternalGame.GuiManager)
         {
             ScreenManager = screenManager;
-            CurrentDirectory = Directory.GetCurrentDirectory();
+            CurrentDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
             Width = 500;
             Height = 300;

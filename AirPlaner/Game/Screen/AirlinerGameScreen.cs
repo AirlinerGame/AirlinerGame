@@ -1,4 +1,5 @@
-﻿using AirPlaner.Screen;
+﻿using AirPlaner.IO.Settings;
+using AirPlaner.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,6 +10,11 @@ namespace AirPlaner.Game.Screen
     {
         private ContentManager _content;
         public Texture2D Background { get; set; }
+
+        public Savegame Data
+        {
+            get { return ScreenManager.InternalGame.UserSettings.Settings; }
+        }
 
         public override void Activate(bool instancePreserved)
         {

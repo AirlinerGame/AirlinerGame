@@ -10,6 +10,7 @@ playerPanel.Color = ui.CreateColor("CornflowerBlue", 0.9);
 
 local boxQuarter = (playerPanel.Width / 4);
 local playerPicture = ui.CreateImageBox();
+playerPicture.Color = ui.GetColor("White");
 playerPicture.Image = context.ProfilePicture;
 playerPicture.Width = boxQuarter * 0.9;
 playerPicture.Height = playerPicture.Width;
@@ -43,6 +44,7 @@ local firstName = ui.CreateTextBox();
 firstName.Left = firstNameLabel.Left;
 firstName.Top = firstNameLabel.Top + 20;
 firstName.Width = playerGroupBox.Width / 2.5;
+firstName.Color = ui.CreateColor("LightBlue", 0.8);
 firstName.Init();
 firstName.Refresh();
 
@@ -59,6 +61,7 @@ local lastName = ui.CreateTextBox();
 lastName.Left = lastNameLabel.Left;
 lastName.Top = lastNameLabel.Top + 20;
 lastName.Width = firstName.Width;
+lastName.Color = ui.CreateColor("LightBlue", 0.8);
 lastName.Init();
 lastName.Refresh();
 
@@ -81,12 +84,14 @@ airlinePanel.Color = ui.CreateColor("CornflowerBlue", 0.9);
 airlinePanel.Text = ui.GetText("createGameAirlineSettingsCaption");
 
 local airlineImage = ui.CreateImageBox();
+airlineImage.Color = ui.GetColor("White");
 airlineImage.Image = context.AirlinePicture;
 airlineImage.Width = boxQuarter * 0.9;
 airlineImage.Height = airlineImage.Width;
 airlineImage.Left = 20;
 airlineImage.Top = 20;
 ui.SetImageMode(airlineImage, "Stretched");
+context.AirlineImageBox = airlineImage;
 airlinePanel.Add(airlineImage);
 
 local airlineImageChangeBtn = ui.CreateButton();
@@ -114,6 +119,7 @@ local airlineName = ui.CreateTextBox();
 airlineName.Top = airlineNameLabel.Top + airlineNameLabel.Height + 5;
 airlineName.Left = airlineNameLabel.Left;
 airlineName.Width = firstName.Width * 1.5;
+airlineName.Color = ui.CreateColor("LightBlue", 0.8);
 airlineName.Init();
 airlineName.Refresh();
 
@@ -146,6 +152,8 @@ gameSettingsPanel.Add(gameSettingsTurnLabel);
 local turnComboBox = ui.CreateComboBox();
 turnComboBox.Left = gameSettingsTurnLabel.Left + gameSettingsTurnLabel.Width;
 turnComboBox.Top = gameSettingsTurnLabel.Top;
+turnComboBox.Color = ui.CreateColor("LightBlue", 0.8);
+--turnComboBox.BackColor = ui.CreateColor("LightBlue", 0.8);
 turnComboBox.Width = 125;
 
 ui.AddItems(turnComboBox, context.GetTurnLengths());

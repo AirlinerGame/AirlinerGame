@@ -130,6 +130,14 @@ namespace AirPlaner.UI
             return label;
         }
 
+        public HeaderLabel CreateHeaderLabel()
+        {
+            var headerLabel = new HeaderLabel(Manager, Game);
+            headerLabel.TextColor = Color.White;
+            headerLabel.Init();
+            return headerLabel;
+        }
+
         public GroupBox CreateGroupBox()
         {
             var groupBox = new GroupBox(Manager);

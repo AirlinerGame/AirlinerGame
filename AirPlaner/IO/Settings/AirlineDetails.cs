@@ -7,5 +7,6 @@ namespace AirPlaner.IO.Settings
     public class AirlineDetails
     {
         public Texture2D AirlinePicture;
+        public string Name;
     }
 }

@@ -72,6 +72,7 @@
     <Compile Include="UI\Components\Button.cs" />
     <Compile Include="UI\Components\CheckBox.cs" />
     <Compile Include="UI\Components\DropDown.cs" />
+    <Compile Include="UI\Components\HeaderLabel.cs" />
     <Compile Include="UI\Components\IGuiItem.cs" />
     <Compile Include="UI\Components\ImageButton.cs" />
     <Compile Include="UI\Components\InputText.cs" />
@@ -121,6 +122,12 @@
     <Content Include="Content\AirlinerBG.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\AirlinerGame\dollar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\AirlinerGame\home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\AirlinerGame\icon_dash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -153,6 +160,9 @@
     </Content>
     <Content Include="Icon.ico" />
     <None Include="Content\font.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\headerfont.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\UI\AirlinerGameUI.lua">

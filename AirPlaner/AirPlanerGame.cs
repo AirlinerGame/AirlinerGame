@@ -101,7 +101,11 @@ namespace AirPlaner
             UserData.RegisterType<CreateGameScreen>();
             UserData.RegisterType<AirlinerGameScreen>();
             UserData.RegisterType<TurnLength>();
+            UserData.RegisterType<UserDetails>();
+            UserData.RegisterType<AirlineDetails>();
             UserData.RegisterType<ImageButton>();
+            UserData.RegisterType<HeaderLabel>();
+            UserData.RegisterType<Savegame>();
 
             AddInitialScreens();
 
