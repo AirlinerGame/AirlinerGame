@@ -229,5 +229,10 @@ namespace AirPlaner.UI
             Object[] addHandlers = { delegateT };
             addMethod.Invoke(comboBox, addHandlers);
         }
+
+        public void Include(string luaPath)
+        {
+            Game.ScreenManager.ScriptLoader.Include(luaPath);
+        }
     }
 }

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Airliner.Plugin;
-using AirPlaner.Game.Screen;
 using AirPlaner.Screen;
 using AirPlaner.UI;
 using MoonSharp.Interpreter;
-using TomShane.Neoforce.Controls;
 
 namespace AirPlaner.Game.Api
 {
@@ -35,6 +31,11 @@ namespace AirPlaner.Game.Api
         public void Load(string filepath)
         {
             _context = new ScriptContext(filepath, this);
+        }
+
+        public void Include(string filepath)
+        {
+            _context.Include(filepath);
         }
 
         public void LoadPlugins()
@@ -109,6 +110,11 @@ namespace AirPlaner.Game.Api
         public void SetScriptContext(object context)
         {
             Script.Globals["context"] = context;
+        }
+
+        public void Include(string filepath)
+        {
+            Script.DoFile(filepath);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace AirPlaner
         private Texture2D _backgroundTexture2D;
         private readonly float _scaleRatio;
 
-        private ScreenManager _screenManager;
+        public ScreenManager ScreenManager { get; set; }
         private ScreenFactory _screenFactory;
         public Manager GuiManager { get; set; }
 
@@ -69,8 +69,8 @@ namespace AirPlaner
             Thread.CurrentThread.CurrentUICulture =
                 CultureInfo.GetCultureInfo(ApplicationSettings.Instance.SelectedLanguage);
 
-            _screenManager = new ScreenManager(this);
-            Components.Add(_screenManager);
+            ScreenManager = new ScreenManager(this);
+            Components.Add(ScreenManager);
             GuiManager = new Manager(this, _graphics);
             GuiManager.Skin = new Skin(GuiManager, "Default");
             GuiManager.AutoCreateRenderTarget = true;
@@ -78,7 +78,7 @@ namespace AirPlaner
             GuiManager.Initialize();
             GuiManager.ShowSoftwareCursor = true;
 
-            _screenManager.ScriptLoader.LoadPlugins();
+            ScreenManager.ScriptLoader.LoadPlugins();
 
             UserData.RegisterAssembly();
             UserData.RegisterType<Button>();
@@ -114,7 +114,7 @@ namespace AirPlaner
 
         private void AddInitialScreens()
         {
-            _screenManager.AddScreen(new BackgroundScene());
+            ScreenManager.AddScreen(new BackgroundScene());
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace AirPlaner
 
             if (Keyboard.GetState().IsKeyDown(Keys.F7))
             {
-                _screenManager.ScriptLoader.Reload();
+                ScreenManager.ScriptLoader.Reload();
             }
 
             GuiManager.Update(gameTime);
