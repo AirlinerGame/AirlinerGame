@@ -106,6 +106,7 @@ namespace AirPlaner
             UserData.RegisterType<UserDetails>();
             UserData.RegisterType<AirlineDetails>();
             UserData.RegisterType<ImageButton>();
+            UserData.RegisterType<MoneyLabel>();
             UserData.RegisterType<HeaderLabel>();
             UserData.RegisterType<Savegame>();
 

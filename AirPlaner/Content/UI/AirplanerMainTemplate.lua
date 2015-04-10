@@ -44,11 +44,25 @@ topBar.Add(companyLogo);
 
 headerLabel = ui.CreateHeaderLabel();
 headerLabel.Height = topBar.Height / 2.5;
-headerLabel.Width = topBar.Width - headerLabel.Left - 200;
+headerLabel.Width = topBar.Width * 0.65 - headerLabel.Left - 200;
 headerLabel.Left = companyLogo.Width + 20;
 headerLabel.Top = topBar.Height / 2 - headerLabel.Height / 2;
 headerLabel.Text = context.Data.Airline.Name .. " " .. ui.GetText("txtDashboard");
 
+local moneyCaptionLabel = ui.CreateLabel();
+moneyCaptionLabel.Width = 60;
+moneyCaptionLabel.Text = "Balance:";
+moneyCaptionLabel.Left = headerLabel.Left + headerLabel.Width;
+moneyCaptionLabel.Top = 10;
+
+moneyValueLabel = ui.CreateMoneyLabel();
+moneyValueLabel.Width = 100;
+moneyValueLabel.Left = moneyCaptionLabel.Left + moneyCaptionLabel.Width;
+moneyValueLabel.Top = moneyCaptionLabel.Top;
+moneyValueLabel.Value = context.Data.Airline.Money;
+
+topBar.Add(moneyCaptionLabel);
+topBar.Add(moneyValueLabel);
 topBar.Add(headerLabel);
 
 ui.AddToManager(sidebar);

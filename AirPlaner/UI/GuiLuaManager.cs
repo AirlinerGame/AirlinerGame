@@ -130,6 +130,12 @@ namespace AirPlaner.UI
             return label;
         }
 
+        public MoneyLabel CreateMoneyLabel()
+        {
+            var moneyLabel = new MoneyLabel(Manager);
+            return moneyLabel;
+        }
+
         public HeaderLabel CreateHeaderLabel()
         {
             var headerLabel = new HeaderLabel(Manager, Game);

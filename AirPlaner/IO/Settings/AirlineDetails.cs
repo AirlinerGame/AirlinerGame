@@ -9,6 +9,7 @@ namespace AirPlaner.IO.Settings
     {
         public SerializableTexture2D AirlinePicture;
         public string Name;
+        public float Money;
 
         public AirlineDetails(GraphicsDevice graphicsDevice)
         {
