@@ -48,8 +48,8 @@ namespace AirPlaner.Game.Screen
             if (_backgroundTexture == null)
             {
                 _backgroundTexture = _content.Load<Texture2D>("AirlinerBG");
-                ProfilePicture = ScreenManager.Settings.Player.PlayerPicture ?? _content.Load<Texture2D>("CreateGame/empty_profile");
-                AirlinePicture = ScreenManager.Settings.Airline.AirlinePicture ?? _content.Load<Texture2D>("CreateGame/empty_airline");
+                ProfilePicture = ScreenManager.Settings.Player.PlayerPicture.Image ?? _content.Load<Texture2D>("CreateGame/empty_profile");
+                AirlinePicture = ScreenManager.Settings.Airline.AirlinePicture.Image ?? _content.Load<Texture2D>("CreateGame/empty_airline");
             }
 
             ScreenManager.ScriptLoader.Load("Content/UI/CreateGameUI.lua");
@@ -135,10 +135,10 @@ namespace AirPlaner.Game.Screen
             var savegame = ScreenManager.Settings;
             savegame.Player.Firstname = Firstname.Text;
             savegame.Player.Lastname = Lastname.Text;
-            savegame.Player.PlayerPicture = ProfilePicture;
+            savegame.Player.PlayerPicture.Image = ProfilePicture;
 
             //Write Airline Settings to Savegame
-            savegame.Airline.AirlinePicture = AirlinePicture;
+            savegame.Airline.AirlinePicture.Image = AirlinePicture;
             savegame.Airline.Name = AirlineName.Text;
 
             //Switch to created GameScreen

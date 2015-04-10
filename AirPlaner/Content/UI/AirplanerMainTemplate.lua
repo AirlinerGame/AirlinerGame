@@ -34,7 +34,7 @@ topBar.Left = sidebar.Width;
 --topBar.BackColor = ui.GetColor("White");
 
 companyLogo = ui.CreateImageBox();
-companyLogo.Image = context.Data.Airline.AirlinePicture;
+companyLogo.Image = context.Data.Airline.AirlinePicture.Image;
 companyLogo.Height = topBar.Height;
 companyLogo.Width = companyLogo.Height;
 companyLogo.Color = ui.GetColor("White");

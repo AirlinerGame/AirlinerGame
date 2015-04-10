@@ -46,8 +46,6 @@ namespace AirPlaner
                 {1, new Language {CultureCode = "de", Name = "Deutsch"}}
             };
 
-            UserSettings = new SettingsManager(this);
-
             _graphics.PreferredBackBufferWidth = 1280;
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
@@ -71,6 +69,9 @@ namespace AirPlaner
 
             ScreenManager = new ScreenManager(this);
             Components.Add(ScreenManager);
+
+            UserSettings = new SettingsManager(this);
+
             GuiManager = new Manager(this, _graphics);
             GuiManager.Skin = new Skin(GuiManager, "Default");
             GuiManager.AutoCreateRenderTarget = true;
@@ -96,6 +97,7 @@ namespace AirPlaner
 
             UserData.RegisterType<Color>();
             UserData.RegisterType<Texture2D>();
+            UserData.RegisterType<SerializableTexture2D>();
 
             UserData.RegisterType<BackgroundScene>();
             UserData.RegisterType<CreateGameScreen>();

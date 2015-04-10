@@ -32,6 +32,7 @@ btnSaveGame.Height = btnHeight;
 btnSaveGame.Top = btnBackToGame.Top + btnBackToGame.Height;
 btnSaveGame.Left = 0;
 btnSaveGame.Text = "Save Game";
+ui.SetCallMethod(btnSaveGame, context, "MenuSaveGameButtonOnClick");
 mainMenu.Add(btnSaveGame);
 
 local btnSaveGameAs = ui.CreateImageButton();
@@ -41,6 +42,7 @@ btnSaveGameAs.Height = btnHeight;
 btnSaveGameAs.Top = btnSaveGame.Top + btnSaveGame.Height;
 btnSaveGameAs.Left = 0;
 btnSaveGameAs.Text = "Save Game As...";
+ui.SetCallMethod(btnSaveGameAs, context, "MenuSaveGameAsButtonOnClick");
 mainMenu.Add(btnSaveGameAs);
 
 local btnSettings = ui.CreateImageButton();

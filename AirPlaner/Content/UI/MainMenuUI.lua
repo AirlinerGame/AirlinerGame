@@ -17,6 +17,7 @@ loadGameButton.Text = ui.GetText("menuLoadGame");
 loadGameButton.Width = buttonWidth;
 loadGameButton.Left = startGameButton.Left;
 loadGameButton.Top = startGameButton.Top + 40;
+ui.SetCallMethod(loadGameButton, context, "LoadGameButtonOnClick");
 
 local settingsButton = ui.CreateButton();
 settingsButton.Text = ui.GetText("menuSettings");

@@ -23,6 +23,19 @@ namespace AirPlaner.Screen
             MainMenu.Visible = false;
             MainMenu.Close();
         }
+        public void MenuSaveGameButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            if (ScreenManager.InternalGame.UserSettings.Settings.Filepath != null)
+            {
+                ScreenManager.InternalGame.UserSettings.Save(ScreenManager.InternalGame.UserSettings.Settings.Filepath);
+            }
+            MainMenu.Close();
+        }
+
+        public void MenuSaveGameAsButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            MainMenu.Close();
+        }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {

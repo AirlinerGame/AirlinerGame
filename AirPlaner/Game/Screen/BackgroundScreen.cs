@@ -49,10 +49,15 @@ namespace AirPlaner.Game.Screen
                 _backgroundTexture = _content.Load<Texture2D>("AirlinerBG");
             }
         }
-
         public void StartGameButtonOnClick(object sender, EventArgs eventArgs)
         {
             LoadingScreen.Load(ScreenManager, true, "Loading...", new CreateGameScreen());
+        }
+
+        public void LoadGameButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            ScreenManager.Settings.SettingsManager.Load("Savegames/Temp.savegame");
+            LoadingScreen.Load(ScreenManager, true, "Loading...", new AirlinerGameScreen());
         }
 
         public void SettingsButtonOnClick(object sender, EventArgs eventArgs)

@@ -78,6 +78,7 @@
     <Compile Include="UI\Components\ImageButton.cs" />
     <Compile Include="UI\Components\InputText.cs" />
     <Compile Include="UI\Components\Label.cs" />
+    <Compile Include="UI\Components\SerializableTexture2D.cs" />
     <Compile Include="UI\GuiLuaManager.cs" />
     <Compile Include="UI\GUIManager.cs" />
     <Compile Include="UI\Menu\MenuComponent.cs" />

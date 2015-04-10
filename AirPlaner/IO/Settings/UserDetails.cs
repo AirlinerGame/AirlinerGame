@@ -1,4 +1,5 @@
 ﻿using System;
+using AirPlaner.UI.Components;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace AirPlaner.IO.Settings
@@ -6,13 +7,18 @@ namespace AirPlaner.IO.Settings
     [Serializable]
     public class UserDetails
     {
-        public Texture2D PlayerPicture;
+        public SerializableTexture2D PlayerPicture;
         public string Firstname;
         public string Lastname;
 
-        public UserDetails()
+        public UserDetails(GraphicsDevice graphicsDevice)
         {
-            
+            PlayerPicture = new SerializableTexture2D(graphicsDevice);
+        }
+
+        public void SetGraphicsDevice(GraphicsDevice graphicsDevice)
+        {
+            PlayerPicture.GraphicsDevice = graphicsDevice;
         }
     }
 }
