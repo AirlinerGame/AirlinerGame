@@ -57,6 +57,7 @@
     <Compile Include="IO\Settings\Savegame.cs" />
     <Compile Include="IO\Settings\SettingsManager.cs" />
     <Compile Include="IO\Settings\UserDetails.cs" />
+    <Compile Include="Screen\ClosableGameScreen.cs" />
     <Compile Include="strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -175,6 +176,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\UI\MainMenuUI.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\UI\Modules\GameMainMenu.lua">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

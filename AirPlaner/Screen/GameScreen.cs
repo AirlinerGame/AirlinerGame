@@ -108,6 +108,11 @@ namespace AirPlaner.Screen
 
         }
 
+        public virtual void ReloadInterface()
+        {
+            ScreenManager.ScriptLoader.Reload();
+        }
+
         /// <summary>
         /// This method gets called with every update call. All screens get called! Even the not visible one.
         /// 

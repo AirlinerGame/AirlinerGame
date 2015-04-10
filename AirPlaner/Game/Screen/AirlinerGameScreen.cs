@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace AirPlaner.Game.Screen
 {
-    public class AirlinerGameScreen : GameScreen
+    public class AirlinerGameScreen : ClosableGameScreen
     {
         private ContentManager _content;
         public Texture2D Background { get; set; }
@@ -30,11 +30,6 @@ namespace AirPlaner.Game.Screen
             ScreenManager.ScriptLoader.Run();
 
             base.Activate(instancePreserved);
-        }
-
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
-        {
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
         public override void Draw(GameTime gameTime)

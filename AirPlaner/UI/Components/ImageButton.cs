@@ -162,7 +162,7 @@ namespace AirPlaner.UI.Components
                 }
             }
             base.DrawControl(renderer, rect, gameTime);
-            renderer.SpriteBatch.Draw(_border, new Rectangle(Left, rect.Bottom - 1, Width, 1), _borderColor);
+            renderer.SpriteBatch.Draw(_border, new Rectangle(rect.Left, rect.Bottom - 1, Width, 1), _borderColor);
         }
     }
 }

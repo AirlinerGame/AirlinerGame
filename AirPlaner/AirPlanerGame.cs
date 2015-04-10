@@ -145,11 +145,12 @@ namespace AirPlaner
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //Keyboard.Update(gameTime);
-
             if (Keyboard.GetState().IsKeyDown(Keys.F7))
             {
-                ScreenManager.ScriptLoader.Reload();
+                foreach (var gameScreen in ScreenManager.GetScreens())
+                {
+                    gameScreen.ReloadInterface();
+                }
             }
 
             GuiManager.Update(gameTime);
