@@ -7,7 +7,14 @@ namespace AirPlaner.IO.Settings
     [Serializable]
     public class AirlineDetails
     {
-        public event EventHandler MoneyChanged;
+
+        [NonSerialized]
+        private EventHandler _moneyChanged;
+        public event EventHandler MoneyChanged
+        {
+            add { _moneyChanged += value; }
+            remove { _moneyChanged -= value; }
+        }
 
         private long _money;
 
@@ -17,9 +24,9 @@ namespace AirPlaner.IO.Settings
             set
             {
                 _money = value;
-                if (MoneyChanged != null)
+                if (_moneyChanged != null)
                 {
-                    MoneyChanged(this, new EventArgs());
+                    _moneyChanged(this, new EventArgs());
                 }
             }
         }
