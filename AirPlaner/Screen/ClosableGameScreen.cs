@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AirPlaner.Game.Screen;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using TomShane.Neoforce.Controls;
 
@@ -35,6 +36,23 @@ namespace AirPlaner.Screen
         public void MenuSaveGameAsButtonOnClick(object sender, EventArgs eventArgs)
         {
             MainMenu.Close();
+        }
+
+        public void MenuExitGameButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            MainMenu.Close();
+            ScreenManager.InternalGame.Exit();
+        }
+
+        public void MenuSaveAndCloseGameButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            if (ScreenManager.InternalGame.UserSettings.Settings.Filepath != null)
+            {
+                ScreenManager.InternalGame.UserSettings.Save(ScreenManager.InternalGame.UserSettings.Settings.Filepath);
+            }
+            MainMenu.Close();
+            LoadingScreen.Load(ScreenManager, true, strings.txtLoading, new BackgroundScene());
+            ScreenManager.RemoveScreen(this);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

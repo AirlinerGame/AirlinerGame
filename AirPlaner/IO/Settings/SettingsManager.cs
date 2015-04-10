@@ -28,6 +28,7 @@ namespace AirPlaner.IO.Settings
                 var formatter = new BinaryFormatter();
                 var settings = formatter.Deserialize(fs) as Savegame;
                 Settings = settings;
+                Settings.SettingsManager = this;
                 Settings.SetGraphicsDevice(Game.GraphicsDevice);
             }
         }

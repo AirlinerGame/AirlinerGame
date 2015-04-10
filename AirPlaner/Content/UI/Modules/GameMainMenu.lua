@@ -61,6 +61,7 @@ btnExitGame.Height = btnHeight;
 btnExitGame.Top = btnSettings.Top + btnSettings.Height;
 btnExitGame.Left = 0;
 btnExitGame.Text = "Return to Desktop";
+ui.SetCallMethod(btnExitGame, context, "MenuExitGameButtonOnClick");
 mainMenu.Add(btnExitGame);
 
 local btnSaveAndExit = ui.CreateImageButton();
@@ -70,4 +71,5 @@ btnSaveAndExit.Height = btnHeight;
 btnSaveAndExit.Top = btnExitGame.Top + btnExitGame.Height;
 btnSaveAndExit.Left = 0;
 btnSaveAndExit.Text = "Save & Exit Game";
+ui.SetCallMethod(btnSaveAndExit, context, "MenuSaveAndCloseGameButtonOnClick");
 mainMenu.Add(btnSaveAndExit);
