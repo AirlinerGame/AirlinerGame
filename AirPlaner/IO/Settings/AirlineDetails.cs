@@ -7,9 +7,26 @@ namespace AirPlaner.IO.Settings
     [Serializable]
     public class AirlineDetails
     {
+        public event EventHandler MoneyChanged;
+
+        private long _money;
+
+        public long Money
+        {
+            get { return _money; }
+            set
+            {
+                _money = value;
+                if (MoneyChanged != null)
+                {
+                    MoneyChanged(this, new EventArgs());
+                }
+            }
+        }
+
         public SerializableTexture2D AirlinePicture;
         public string Name;
-        public float Money;
+
 
         public AirlineDetails(GraphicsDevice graphicsDevice)
         {

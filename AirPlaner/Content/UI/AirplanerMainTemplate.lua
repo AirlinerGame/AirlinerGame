@@ -60,6 +60,7 @@ moneyValueLabel.Width = 100;
 moneyValueLabel.Left = moneyCaptionLabel.Left + moneyCaptionLabel.Width;
 moneyValueLabel.Top = moneyCaptionLabel.Top;
 moneyValueLabel.Value = context.Data.Airline.Money;
+context.MoneyLabel = moneyValueLabel;
 
 topBar.Add(moneyCaptionLabel);
 topBar.Add(moneyValueLabel);

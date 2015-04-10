@@ -1,5 +1,6 @@
 ﻿using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
+using AirPlaner.UI.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,6 +11,7 @@ namespace AirPlaner.Game.Screen
     {
         private ContentManager _content;
         public Texture2D Background { get; set; }
+        public MoneyLabel MoneyLabel { get; set; }
 
         public Savegame Data
         {
@@ -29,7 +31,15 @@ namespace AirPlaner.Game.Screen
             ScreenManager.ScriptLoader.SetContext(this);
             ScreenManager.ScriptLoader.Run();
 
+            //Set Event Listener
+            Data.Airline.MoneyChanged += Airline_MoneyChanged;
+
             base.Activate(instancePreserved);
+        }
+
+        void Airline_MoneyChanged(object sender, System.EventArgs e)
+        {
+            MoneyLabel.Value = Data.Airline.Money;
         }
 
         public override void Draw(GameTime gameTime)
