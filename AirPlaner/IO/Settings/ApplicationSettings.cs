@@ -37,6 +37,7 @@ namespace AirPlaner.IO.Settings
         }
 
         public string SelectedLanguage { get; set; }
+        public bool FullScreen { get; set; }
     }
 
 }

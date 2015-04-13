@@ -36,3 +36,9 @@
 /processorParam:TextureFormat=Compressed
 /build:../../../../../../Desktop/headerfont.spritefont
 
+#begin ../../../../../../Desktop/numberfont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=DxtCompressed
+/build:../../../../../../Desktop/numberfont.spritefont
+

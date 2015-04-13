@@ -57,6 +57,10 @@
     <Compile Include="IO\Settings\Savegame.cs" />
     <Compile Include="IO\Settings\SettingsManager.cs" />
     <Compile Include="IO\Settings\UserDetails.cs" />
+    <Compile Include="IO\Sound\fmod.cs" />
+    <Compile Include="IO\Sound\fmod_dsp.cs" />
+    <Compile Include="IO\Sound\fmod_errors.cs" />
+    <Compile Include="IO\Sound\fmod_studio.cs" />
     <Compile Include="Screen\ClosableGameScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +77,7 @@
     <Compile Include="UI\Components\HeaderLabel.cs" />
     <Compile Include="UI\Components\ImageButton.cs" />
     <Compile Include="UI\Components\MoneyLabel.cs" />
+    <Compile Include="UI\Components\NotifyIcon.cs" />
     <Compile Include="UI\Components\OpenFileDialog.cs" />
     <Compile Include="UI\Components\SerializableTexture2D.cs" />
     <Compile Include="UI\GuiLuaManager.cs" />
@@ -111,6 +116,21 @@
       <Link>SDL.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="fmod.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fmodL.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libogg.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libvorbis.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libvorbisfile.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Config\ApplicationSettings.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -123,6 +143,9 @@
     <Content Include="Content\AirlinerGame\dollar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\AirlinerGame\globe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\AirlinerGame\home.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -130,6 +153,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\AirlinerGame\icon_global.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\AirlinerGame\mail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\AirlinerGame\MainMenu\close.png">
@@ -176,6 +202,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\headerfont.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Music\BadChick.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Music\Boogie Belgique - A Little While.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Music\Jeffrey Philip Nelson - Better Memories.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Music\Moon &amp; Sun - Moon &amp; Sun - Salt &amp; Indigo.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Music\The.madpix.project - Wish You Were Here.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\numberfont.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\UI\AirlinerGameUI.lua">

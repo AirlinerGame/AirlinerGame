@@ -39,6 +39,7 @@ namespace AirPlaner.Game.Screen
 
         void Airline_MoneyChanged(object sender, System.EventArgs e)
         {
+            //Display new Money Value
             MoneyLabel.Value = Data.Airline.Money;
         }
 

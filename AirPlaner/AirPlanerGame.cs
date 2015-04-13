@@ -1,18 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using AirPlaner.Config.Entity;
 using AirPlaner.Game.Screen;
 using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
 using AirPlaner.UI.Components;
+using FMOD;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
 using TomShane.Neoforce.Controls;
-using Button = TomShane.Neoforce.Controls.Button;
 
 namespace AirPlaner
 {
@@ -35,10 +36,29 @@ namespace AirPlaner
 
         public Dictionary<int, Language> AvailableLanguages { get; set; }
 
+        private FMOD.System _fmodsystem;
+        private Channel _fmodchannel;
+        private ChannelGroup _fmodChannelGroup;
+        private bool _playing;
+        private Sound _fmodsound;
+
+        private Queue<string> _songs; 
+
+        static readonly Random Random = new Random();
+
         public AirPlanerGame()
         {
             _graphics = new GraphicsDeviceManager(this);
+            Window.IsBorderless = true;
             Content.RootDirectory = "Content";
+
+            ApplicationSettings.Instance.FullScreen = true;
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 1080;
+
+            _graphics.IsFullScreen = true;
+            //_graphics.ToggleFullScreen();
+            _graphics.ApplyChanges();
 
             AvailableLanguages = new Dictionary<int, Language>
             {
@@ -46,11 +66,9 @@ namespace AirPlaner
                 {1, new Language {CultureCode = "de", Name = "Deutsch"}}
             };
 
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
-            _graphics.ApplyChanges();
-
             _scaleRatio = _graphics.PreferredBackBufferWidth/1920f;
+
+            _songs = new Queue<string>();
         }
 
         /// <summary>
@@ -107,10 +125,21 @@ namespace AirPlaner
             UserData.RegisterType<AirlineDetails>();
             UserData.RegisterType<ImageButton>();
             UserData.RegisterType<MoneyLabel>();
+            UserData.RegisterType<NotifyIcon>();
             UserData.RegisterType<HeaderLabel>();
             UserData.RegisterType<Savegame>();
 
             AddInitialScreens();
+
+            //Create FMOD System
+            Factory.System_Create(out _fmodsystem);
+
+            //Initialise FMOD
+            _fmodsystem.init(32, INITFLAGS.NORMAL, (IntPtr)null);
+
+            _fmodsystem.createChannelGroup("mychannel", out _fmodChannelGroup);
+
+            Window.Position = new Point(0,0);
 
             base.Initialize();
         }
@@ -130,6 +159,10 @@ namespace AirPlaner
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _backgroundTexture2D = Content.Load<Texture2D>("AirlinerBG");
+
+            var files = Directory.GetFiles("Content/Music");
+            Shuffle(files);
+            _songs = new Queue<string>(files);
         }
 
         /// <summary>
@@ -156,6 +189,15 @@ namespace AirPlaner
                 }
             }
 
+            if (_fmodchannel != null)
+                _fmodchannel.isPlaying(out _playing);
+
+            if (!_playing && _songs.Count > 0)
+            {
+                _fmodsystem.createSound(_songs.Dequeue(), MODE.DEFAULT, out _fmodsound);
+                _fmodsystem.playSound(_fmodsound, _fmodChannelGroup, false, out _fmodchannel);
+            }
+
             GuiManager.Update(gameTime);
             UserSettings.Tick(gameTime);
 
@@ -180,6 +222,20 @@ namespace AirPlaner
             GuiManager.Draw(gameTime);
 
             base.Draw(gameTime);
+        }
+
+        static void Shuffle<T>(T[] array)
+        {
+            int n = array.Length;
+            for (int i = 0; i < n; i++)
+            {
+                // NextDouble returns a random number between 0 and 1.
+                // ... It is equivalent to Math.random() in Java.
+                int r = i + (int)(Random.NextDouble() * (n - i));
+                T t = array[r];
+                array[r] = array[i];
+                array[i] = t;
+            }
         }
     }
 }

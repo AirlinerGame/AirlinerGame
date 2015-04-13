@@ -166,6 +166,13 @@ namespace AirPlaner.UI
             return window;
         }
 
+        public NotifyIcon CreateNotifyIcon()
+        {
+            var icon = new NotifyIcon(Manager);
+            //icon.Font = Game.Content.Load<SpriteFont>("numberfont");
+            return icon;
+        }
+
         public void AddToManager(Component component)
         {
             Manager.Add(component);
