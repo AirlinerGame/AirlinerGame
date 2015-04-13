@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\SoundManager.cs" />
+    <Compile Include="Entities\MusicTrack.cs" />
+    <Compile Include="Entities\MusicTrackEventArgs.cs" />
+    <Compile Include="Entities\SoundPlayerEventArgs.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

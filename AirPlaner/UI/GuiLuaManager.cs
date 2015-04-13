@@ -173,6 +173,12 @@ namespace AirPlaner.UI
             return icon;
         }
 
+        public MusicPlayer CreateMusicPlayer()
+        {
+            var musicPlayer = new MusicPlayer(Manager);
+            return musicPlayer;
+        }
+
         public void AddToManager(Component component)
         {
             Manager.Add(component);

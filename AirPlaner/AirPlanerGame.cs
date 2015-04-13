@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
+using Airliner.Plugin.API;
+using Airliner.Plugin.Entities;
 using AirPlaner.Config.Entity;
 using AirPlaner.Game.Screen;
 using AirPlaner.IO.Settings;
@@ -13,6 +16,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
+using OpenTK.Graphics.ES30;
 using TomShane.Neoforce.Controls;
 
 namespace AirPlaner
@@ -25,7 +29,6 @@ namespace AirPlaner
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Texture2D _backgroundTexture2D;
         private readonly float _scaleRatio;
 
         public ScreenManager ScreenManager { get; set; }
@@ -42,8 +45,6 @@ namespace AirPlaner
         private bool _playing;
         private Sound _fmodsound;
 
-        private Queue<string> _songs; 
-
         static readonly Random Random = new Random();
 
         public AirPlanerGame()
@@ -57,7 +58,6 @@ namespace AirPlaner
             _graphics.PreferredBackBufferHeight = 1080;
 
             _graphics.IsFullScreen = true;
-            //_graphics.ToggleFullScreen();
             _graphics.ApplyChanges();
 
             AvailableLanguages = new Dictionary<int, Language>
@@ -67,8 +67,6 @@ namespace AirPlaner
             };
 
             _scaleRatio = _graphics.PreferredBackBufferWidth/1920f;
-
-            _songs = new Queue<string>();
         }
 
         /// <summary>
@@ -128,6 +126,7 @@ namespace AirPlaner
             UserData.RegisterType<NotifyIcon>();
             UserData.RegisterType<HeaderLabel>();
             UserData.RegisterType<Savegame>();
+            UserData.RegisterType<MusicPlayer>();
 
             AddInitialScreens();
 
@@ -158,11 +157,37 @@ namespace AirPlaner
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _backgroundTexture2D = Content.Load<Texture2D>("AirlinerBG");
-
-            var files = Directory.GetFiles("Content/Music");
+            var files = Directory.GetFiles(Path.Combine("Content", "Music"), "*.ogg");
             Shuffle(files);
-            _songs = new Queue<string>(files);
+
+            SoundManager.Instance.TrackQueue = new Queue<MusicTrack>();
+
+            foreach (var file in files)
+            {
+                MusicTrack musicTrack = new MusicTrack();
+                musicTrack.Path = file;
+
+                var last = file.Split(Path.DirectorySeparatorChar).Last();
+                var imagePath = Path.Combine("Content", "Music", last.Substring(0, last.Length - 4) + ".jpg");
+                if (File.Exists(imagePath))
+                {
+                    musicTrack.ImagePath = imagePath;
+                }
+                var splitted = last.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                if (splitted.Length == 2)
+                {
+                    musicTrack.Artist = Transform(splitted[0]);
+                    musicTrack.Title = Transform(splitted[1]).Substring(0, splitted[1].Length - 4);
+                }
+
+                SoundManager.Instance.TrackQueue.Enqueue(musicTrack);
+            }
+
+        }
+
+        private string Transform(string value)
+        {
+            return value.Replace("_", " ");
         }
 
         /// <summary>
@@ -190,12 +215,27 @@ namespace AirPlaner
             }
 
             if (_fmodchannel != null)
-                _fmodchannel.isPlaying(out _playing);
-
-            if (!_playing && _songs.Count > 0)
             {
-                _fmodsystem.createSound(_songs.Dequeue(), MODE.DEFAULT, out _fmodsound);
+                _fmodchannel.isPlaying(out _playing);
+                SoundManager.Instance.PlayingMusic = _playing;
+            }
+
+            if (!_playing && SoundManager.Instance.TrackQueue.Count > 0)
+            {
+                var musicTrack = SoundManager.Instance.TrackQueue.Dequeue();
+                _fmodsystem.createSound(musicTrack.Path, MODE.DEFAULT, out _fmodsound);
+                uint length;
+                _fmodsound.getLength(out length, TIMEUNIT.MS);
+                musicTrack.Length = length;
                 _fmodsystem.playSound(_fmodsound, _fmodChannelGroup, false, out _fmodchannel);
+                SoundManager.Instance.CurrentTrack = musicTrack;
+            }
+
+            if (_playing)
+            {
+                uint position;
+                _fmodchannel.getPosition(out position, TIMEUNIT.MS);
+                SoundManager.Instance.CurrentPosition = position;
             }
 
             GuiManager.Update(gameTime);

@@ -27,6 +27,7 @@ btnFinances.Color = ui.CreateColor("White", 0.1);
 btnFinances.HoverColor = ui.CreateColor("Red", 0.4);
 sidebar.Add(btnFinances);
 
+
 topBar = ui.CreateSideBar();
 topBar.Width = ui.GetScreenWidth() - sidebar.Width;
 topBar.Height = ui.GetScreenHeight() / 11;
@@ -61,6 +62,16 @@ moneyValueLabel.Left = moneyCaptionLabel.Left + moneyCaptionLabel.Width;
 moneyValueLabel.Top = moneyCaptionLabel.Top;
 moneyValueLabel.Value = context.Data.Airline.Money;
 context.MoneyLabel = moneyValueLabel;
+
+-- Music Player
+local musicPlayer = ui.CreateMusicPlayer();
+musicPlayer.Width = topBar.Width / 7;
+musicPlayer.Height = topBar.OriginHeight;
+musicPlayer.Top = 0;
+musicPlayer.Left = topBar.Width - musicPlayer.Width;
+musicPlayer.Color = ui.CreateColor("White", 0.25);
+topBar.Add(musicPlayer);
+context.MusicPlayer = musicPlayer;
 
 topBar.Add(moneyCaptionLabel);
 topBar.Add(moneyValueLabel);

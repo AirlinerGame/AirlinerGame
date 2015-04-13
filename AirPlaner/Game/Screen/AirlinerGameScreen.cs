@@ -1,4 +1,7 @@
-﻿using AirPlaner.IO.Settings;
+﻿using System;
+using Airliner.Plugin.API;
+using Airliner.Plugin.Entities;
+using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
 using AirPlaner.UI.Components;
 using Microsoft.Xna.Framework;
@@ -12,6 +15,7 @@ namespace AirPlaner.Game.Screen
         private ContentManager _content;
         public Texture2D Background { get; set; }
         public MoneyLabel MoneyLabel { get; set; }
+        public MusicPlayer MusicPlayer { get; set; }
 
         public Savegame Data
         {
@@ -34,7 +38,24 @@ namespace AirPlaner.Game.Screen
             //Set Event Listener
             Data.Airline.MoneyChanged += Airline_MoneyChanged;
 
+            SoundManager.Instance.TrackChanged += MusicTrackChanged;
+            SoundManager.Instance.PositionChanged += MusicTrackPositionChanged;
+            if (SoundManager.Instance.PlayingMusic)
+            {
+                MusicPlayer.CurrentTrack = SoundManager.Instance.CurrentTrack;
+            }
+
             base.Activate(instancePreserved);
+        }
+
+        private void MusicTrackChanged(object sender, MusicTrackEventArgs eventargs)
+        {
+            MusicPlayer.CurrentTrack = eventargs.Track;
+        }
+
+        private void MusicTrackPositionChanged(object sender, EventArgs e)
+        {
+            MusicPlayer.CurrentPosition = SoundManager.Instance.CurrentPosition;
         }
 
         void Airline_MoneyChanged(object sender, System.EventArgs e)
