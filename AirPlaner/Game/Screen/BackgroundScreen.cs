@@ -19,6 +19,9 @@ namespace AirPlaner.Game.Screen
         private ContentManager _content;
         private Texture2D _backgroundTexture;
 
+        public Window SettingsWindow { get; set; }
+        public ComboBox LanguageComboBox { get; set; }
+
         public Texture2D Logo { get; set; }
 
         public BackgroundScene()
@@ -62,74 +65,31 @@ namespace AirPlaner.Game.Screen
 
         public void SettingsButtonOnClick(object sender, EventArgs eventArgs)
         {
-            var manager = ScreenManager.InternalGame.GuiManager;
-            var window = new Window(manager);
-            
-            window.Width = 400;
-            window.Height = 200;
-            window.Text = strings.settingsWindowTitle;
-            window.IconVisible = false;
-            window.CloseButtonVisible = false;
-            window.Movable = false;
-            window.Resizable = false;
+            SettingsWindow.Show();
+        }
 
-            var groupBox = new GroupBox(manager);
-            groupBox.Text = strings.menuLocaleTitle;
-            groupBox.Width = window.Width - 50;
-            groupBox.Height = 50;
-            groupBox.Left = window.Width/2 - groupBox.Width/2 - 10;
-            groupBox.Top = 10;
-            groupBox.TextColor = Color.White;
+        public void SettingsSaveAndCloseOnClick(object sender, EventArgs eventArgs)
+        {
+            SettingsWindow.Close();
+        }
 
-            var comboBox = new ComboBox(manager);
+        public void InitLanguageComboBox()
+        {
+            LanguageComboBox.Items.Clear();
             var availableLanguages = ScreenManager.InternalGame.AvailableLanguages;
-            comboBox.Items.AddRange(availableLanguages.Values);
+            LanguageComboBox.Items.AddRange(availableLanguages.Values);
+            LanguageComboBox.ItemIndex = DictionaryHelper.GetKeyFromValue(availableLanguages, ApplicationSettings.Instance.SelectedLanguage);
+            LanguageComboBox.TextColor = Color.White;
 
-            comboBox.Width = groupBox.Width - 25;
-            comboBox.Height = 25;
-            comboBox.Left = groupBox.Width/2 - comboBox.Width/2;
-            comboBox.ItemIndex = DictionaryHelper.GetKeyFromValue(availableLanguages, ApplicationSettings.Instance.SelectedLanguage);
-            comboBox.TextColor = Color.White;
-            //comboBox.Text = availableLanguages[comboBox.ItemIndex].Name;
-
-            comboBox.ItemIndexChanged += delegate
+            LanguageComboBox.ItemIndexChanged += delegate
             {
-                ApplicationSettings.Instance.SelectedLanguage = availableLanguages[comboBox.ItemIndex].CultureCode;
+                ApplicationSettings.Instance.SelectedLanguage = availableLanguages[LanguageComboBox.ItemIndex].CultureCode;
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(ApplicationSettings.Instance.SelectedLanguage);
                 ApplicationSettings.Instance.Save();
             };
-            
-            comboBox.Init();
-            comboBox.Refresh();
 
-            var btnSaveAndClose = new Button(manager);
-            btnSaveAndClose.Text = strings.btnSaveAndClose;
-            btnSaveAndClose.Width = window.Width/2 - 25;
-            btnSaveAndClose.TextColor = Color.White;
-            btnSaveAndClose.Left = 10;
-            btnSaveAndClose.Top = window.Height - btnSaveAndClose.Height - 50;
-            btnSaveAndClose.Click += delegate(object o, EventArgs args)
-            {
-                window.Close();
-            };
-
-            var btnClose = new Button(manager);
-            btnClose.Text = strings.btnClose;
-            btnClose.Width = window.Width / 2 - 25;
-            btnClose.TextColor = Color.White;
-            btnClose.Left = 20 + btnSaveAndClose.Width;
-            btnClose.Top = window.Height - btnClose.Height - 50;
-            btnClose.Click += delegate(object o, EventArgs args)
-            {
-                window.Close();
-            };
-
-            groupBox.Add(comboBox);
-
-            window.Add(groupBox);
-            window.Add(btnSaveAndClose);
-            window.Add(btnClose);
-            manager.Add(window);
+            LanguageComboBox.Init();
+            LanguageComboBox.Refresh();
         }
 
         /// <summary>

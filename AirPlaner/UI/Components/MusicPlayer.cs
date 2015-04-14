@@ -13,6 +13,12 @@ namespace AirPlaner.UI.Components
         private readonly Label _titleLabel;
         private readonly Label _currentTime;
         private readonly Label _trackLength;
+
+        private readonly ImageButton _playBtn;
+        private readonly ImageButton _stopBtn;
+        private readonly ImageButton _nextButton;
+        private readonly ImageButton _prevoiousBtn;
+
         private MusicTrack _currentTrack;
         private long _currentPosition;
 
@@ -92,7 +98,7 @@ namespace AirPlaner.UI.Components
                 } 
             }
 
-            TimeSpan ts = new TimeSpan(CurrentTrack.Length * 10000);
+            TimeSpan ts = TimeSpan.FromMilliseconds(CurrentTrack.Length);
             _trackLength.Text = "/" + ts.ToString("%m\\:ss");
             _currentTime.Text = "0:00";
         }
