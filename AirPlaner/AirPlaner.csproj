@@ -47,6 +47,7 @@
     <Compile Include="Game\Screen\BackgroundScreen.cs" />
     <Compile Include="Game\Screen\CreateGameScreen.cs" />
     <Compile Include="Game\Screen\LoadingScreen.cs" />
+    <Compile Include="Game\Screen\State\IAsyncLoadable.cs" />
     <Compile Include="IO\KeyboardEventArgs.cs" />
     <Compile Include="IO\KeyboardHandler.cs" />
     <Compile Include="IO\MouseEventArgs.cs" />

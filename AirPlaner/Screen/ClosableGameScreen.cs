@@ -51,7 +51,7 @@ namespace AirPlaner.Screen
                 ScreenManager.InternalGame.UserSettings.Save(ScreenManager.InternalGame.UserSettings.Settings.Filepath);
             }
             MainMenu.Close();
-            LoadingScreen.Load(ScreenManager, true, strings.txtLoading, new BackgroundScene());
+            LoadingScreen.Load(ScreenManager, new BackgroundScene(), strings.txtLoading);
             ScreenManager.RemoveScreen(this);
         }
 

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Threading;
 using Airliner.Plugin.API;
 using Airliner.Plugin.Entities;
+using AirPlaner.Game.Screen.State;
 using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
 using AirPlaner.UI.Components;
@@ -10,7 +13,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace AirPlaner.Game.Screen
 {
-    public class AirlinerGameScreen : ClosableGameScreen
+    public class AirlinerGameScreen : ClosableGameScreen, IAsyncLoadable
     {
         private ContentManager _content;
         public Texture2D Background { get; set; }
@@ -20,6 +23,18 @@ namespace AirPlaner.Game.Screen
         public Savegame Data
         {
             get { return ScreenManager.InternalGame.UserSettings.Settings; }
+        }
+
+        public void AsyncContentLoad(BackgroundWorker worker)
+        {
+            worker.ReportProgress(10);
+            Thread.Sleep(1000);
+            worker.ReportProgress(35);
+            Thread.Sleep(500);
+            worker.ReportProgress(80);
+            Thread.Sleep(1000);
+
+            worker.ReportProgress(100);
         }
 
         public override void Activate(bool instancePreserved)

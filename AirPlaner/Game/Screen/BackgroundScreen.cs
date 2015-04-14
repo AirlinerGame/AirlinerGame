@@ -54,13 +54,13 @@ namespace AirPlaner.Game.Screen
         }
         public void StartGameButtonOnClick(object sender, EventArgs eventArgs)
         {
-            LoadingScreen.Load(ScreenManager, true, "Loading...", new CreateGameScreen());
+            LoadingScreen.Load(ScreenManager, new CreateGameScreen(), strings.txtLoading);
         }
 
         public void LoadGameButtonOnClick(object sender, EventArgs eventArgs)
         {
             ScreenManager.Settings.SettingsManager.Load("Savegames/Temp.savegame");
-            LoadingScreen.Load(ScreenManager, true, "Loading...", new AirlinerGameScreen());
+            LoadingScreen.Load(ScreenManager, new AirlinerGameScreen(), strings.txtLoading);
         }
 
         public void SettingsButtonOnClick(object sender, EventArgs eventArgs)

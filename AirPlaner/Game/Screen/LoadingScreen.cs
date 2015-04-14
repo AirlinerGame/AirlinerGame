@@ -1,7 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Linq;
+using AirPlaner.Game.Screen.State;
 using AirPlaner.Screen;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using TomShane.Neoforce.Controls;
 
 namespace AirPlaner.Game.Screen
 {
@@ -9,21 +12,24 @@ namespace AirPlaner.Game.Screen
     {
         private readonly bool _loadingIsSlow;
         private bool _otherScreensAreGone;
+        private bool _loadingStuff;
+
+        private int _progress;
 
         public string Message { get; set; }
 
-        private readonly GameScreen[] _screensToLoad;
+        private readonly GameScreen _screen;
 
-        private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow, GameScreen[] screensToLoad)
+        private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow, GameScreen screen)
         {
             _loadingIsSlow = loadingIsSlow;
-            _screensToLoad = screensToLoad;
+            _screen = screen;
             Message = strings.txtLoading;
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
         }
 
-        public static void Load(ScreenManager screenManager, bool loadingIsSlow, string message = "Loading...", params GameScreen[] screensToLoad)
+        public static void Load(ScreenManager screenManager, GameScreen screen, string message = "Loading...")
         {
             foreach (GameScreen gameScreen in screenManager.GetScreens())
             {
@@ -31,7 +37,8 @@ namespace AirPlaner.Game.Screen
             }
             screenManager.ScriptLoader.Unload();
 
-            LoadingScreen loadingScreen = new LoadingScreen(screenManager, loadingIsSlow, screensToLoad) { Message = strings.txtLoading };
+            bool loadingIsSlow = screen.GetType().GetInterfaces().Contains(typeof (IAsyncLoadable));
+            LoadingScreen loadingScreen = new LoadingScreen(screenManager, loadingIsSlow, screen) { Message = strings.txtLoading };
             screenManager.AddScreen(loadingScreen);
         }
 
@@ -49,17 +56,62 @@ namespace AirPlaner.Game.Screen
 
             if (_otherScreensAreGone)
             {
-                ScreenManager.RemoveScreen(this);
-                foreach (GameScreen gameScreen in _screensToLoad)
+                if (_loadingIsSlow && !_loadingStuff)
                 {
-                    if (gameScreen != null)
+                    var manager = ScreenManager.InternalGame.GuiManager;
+                    var textLabel = new Label(manager);
+                    textLabel.Color = Color.White;
+                    textLabel.Text = Message;
+                    textLabel.Top = manager.ScreenHeight/2 - 100;
+                    textLabel.Width = 200;
+
+                    var progressBar = new ProgressBar(manager);
+                    progressBar.Mode = ProgressBarMode.Default;
+                    progressBar.Range = 100;
+                    progressBar.Value = 0;
+                    progressBar.Color = Color.Orange;
+                    progressBar.Width = manager.ScreenWidth/2;
+                    progressBar.Top = textLabel.Top + textLabel.Height + 5; 
+                    progressBar.Left = manager.ScreenWidth/2 - progressBar.Width/2;
+                    textLabel.Left = progressBar.Left;
+
+                    manager.Add(textLabel);
+                    manager.Add(progressBar);
+
+                    var worker = new BackgroundWorker {WorkerReportsProgress = true};
+                    var target = _screen as IAsyncLoadable;
+                    worker.DoWork += delegate(object sender, DoWorkEventArgs args)
                     {
-                        ScreenManager.AddScreen(gameScreen);
-                    }
+                        target.AsyncContentLoad(worker);
+                    };
+                    worker.ProgressChanged += delegate(object sender, ProgressChangedEventArgs args)
+                    {
+                        _progress = args.ProgressPercentage;
+                        progressBar.Value = _progress;
+                    };
+                    worker.RunWorkerCompleted += delegate
+                    {
+                        manager.Remove(textLabel);
+                        manager.Remove(progressBar);
+                        SwitchState();
+                    };
+                    worker.RunWorkerAsync(ScreenManager);
+                    _loadingStuff = true;
+                }
+                else if(!_loadingIsSlow)
+                {
+                    ScreenManager.RemoveScreen(this);
+                    ScreenManager.AddScreen(_screen);
                 }
 
                 ScreenManager.Game.ResetElapsedTime();
             }
+        }
+
+        private void SwitchState()
+        {
+            ScreenManager.RemoveScreen(this);
+            ScreenManager.AddScreen(_screen);
         }
 
         public override void Draw(GameTime gameTime)
@@ -67,23 +119,6 @@ namespace AirPlaner.Game.Screen
             if ((ScreenState == ScreenState.Active) && (ScreenManager.GetScreens().Length == 1))
             {
                 _otherScreensAreGone = true;
-            }
-
-            if (_loadingIsSlow)
-            {
-                SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-                SpriteFont font = ScreenManager.Font;
-
-                Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-                Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
-                Vector2 textSize = font.MeasureString(Message);
-                Vector2 textPosition = (viewportSize - textSize) / 2;
-
-                Color color = Color.White * TransitionAlpha;
-
-                spriteBatch.Begin();
-                spriteBatch.DrawString(font, Message, textPosition, color);
-                spriteBatch.End();
             }
 
         }

@@ -143,7 +143,7 @@ namespace AirPlaner.Game.Screen
             savegame.Airline.Name = AirlineName.Text;
 
             //Switch to created GameScreen
-            LoadingScreen.Load(ScreenManager, true, strings.txtLoading, new AirlinerGameScreen());
+            LoadingScreen.Load(ScreenManager, new AirlinerGameScreen(), strings.txtLoading);
             ScreenManager.RemoveScreen(this);
         }
 
