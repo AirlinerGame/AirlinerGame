@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirPlaner", "AirPlaner\AirP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginApi", "PluginApi\PluginApi.csproj", "{4CAC1710-3B68-450E-AA0A-843052807EAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleGameDatabase", "SampleGameDatabase\SampleGameDatabase.csproj", "{EC58C1BE-8314-4864-A2E4-3DFC18128713}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,16 @@ Global
 		{4CAC1710-3B68-450E-AA0A-843052807EAA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4CAC1710-3B68-450E-AA0A-843052807EAA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4CAC1710-3B68-450E-AA0A-843052807EAA}.Release|x86.ActiveCfg = Release|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EC58C1BE-8314-4864-A2E4-3DFC18128713}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

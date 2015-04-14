@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4CAC1710-3B68-450E-AA0A-843052807EAA}</ProjectGuid>
+    <ProjectGuid>{EC58C1BE-8314-4864-A2E4-3DFC18128713}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Airliner.Plugin</RootNamespace>
-    <AssemblyName>PluginApi</AssemblyName>
+    <RootNamespace>SampleGameDatabase</RootNamespace>
+    <AssemblyName>SampleGameDatabase</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,20 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\GameManager.cs" />
-    <Compile Include="API\SoundManager.cs" />
-    <Compile Include="Entities\Audio\MusicTrack.cs" />
-    <Compile Include="Entities\Audio\MusicTrackEventArgs.cs" />
-    <Compile Include="Entities\Audio\SoundPlayerEventArgs.cs" />
-    <Compile Include="Entities\Game\GameDatabase.cs" />
-    <Compile Include="Entities\Game\Database\IGameDatabaseProvider.cs" />
-    <Compile Include="Entities\Game\GameData.cs" />
-    <Compile Include="Entities\Game\GameState.cs" />
-    <Compile Include="Entities\Game\GameStateEventArgs.cs" />
-    <Compile Include="IPlugin.cs" />
+    <Compile Include="SampleGameDatabaseFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PluginApi\PluginApi.csproj">
+      <Project>{4cac1710-3b68-450e-aa0a-843052807eaa}</Project>
+      <Name>PluginApi</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

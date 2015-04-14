@@ -279,6 +279,10 @@
       <Project>{4cac1710-3b68-450e-aa0a-843052807eaa}</Project>
       <Name>PluginApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SampleGameDatabase\SampleGameDatabase.csproj">
+      <Project>{ec58c1be-8314-4864-a2e4-3dfc18128713}</Project>
+      <Name>SampleGameDatabase</Name>
+    </ProjectReference>
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">

@@ -61,6 +61,8 @@ namespace AirPlaner.Game.Screen
                 MusicPlayer.CurrentTrack = SoundManager.Instance.CurrentTrack;
             }
 
+            GameManager.Instance.GameRunning = true;
+
             base.Activate(instancePreserved);
         }
 
