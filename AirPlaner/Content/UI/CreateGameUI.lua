@@ -1,7 +1,7 @@
 ﻿-- Player/Manager Settings
 local playerPanel = ui.CreateGroupPanel();
 playerPanel.Width = ui.GetScreenWidth() / 2 - 50;
-playerPanel.Height = 225;
+playerPanel.Height = ui.GetScreenHeight() / 3;
 playerPanel.Top = 20;
 playerPanel.Left = 40;
 
@@ -77,7 +77,7 @@ playerPanel.Add(playerGroupBox);
 -- Airline Settings
 local airlinePanel = ui.CreateGroupPanel();
 airlinePanel.Width = playerPanel.Width;
-airlinePanel.Height = 225;
+airlinePanel.Height = ui.GetScreenHeight() / 3;
 airlinePanel.Top = 20;
 airlinePanel.Left = playerPanel.Left + playerPanel.Width + 20;
 airlinePanel.Color = ui.CreateColor("CornflowerBlue", 0.9);
@@ -166,6 +166,25 @@ turnComboBox.Refresh();
 context.TurnComboBox = turnComboBox;
 
 gameSettingsPanel.Add(turnComboBox);
+
+local gameDatabaseBtn = ui.CreateButton();
+gameDatabaseBtn.Text = "Select Game Database ...";
+gameDatabaseBtn.Width = gameSettingsPanel.OriginWidth / 3;
+gameDatabaseBtn.Left = gameSettingsTurnLabel.Left;
+gameDatabaseBtn.Top = gameSettingsTurnLabel.Top + gameSettingsTurnLabel.Height + 15;
+
+gameSettingsPanel.Add(gameDatabaseBtn);
+
+local gameDatabaseSelection = ui.CreateGameDatabaseSelectionDialog();
+gameDatabaseSelection.Width = ui.GetScreenWidth() / 2;
+gameDatabaseSelection.Height = ui.GetScreenHeight() / 3;
+gameDatabaseSelection.Visible = false;
+ui.AddToManager(gameDatabaseSelection);
+ui.SetCallMethod(gameDatabaseBtn, context, "SelectGameDatabaseDialogButtonOnClick");
+context.GameDatabaseSelectionDialog = gameDatabaseSelection;
+context.GameDatabaseSelectionInit();
+gameDatabaseSelection.Init();
+gameDatabaseSelection.Refresh();
 
 local startGameBtn = ui.CreateButton();
 startGameBtn.Text = ui.GetText("menuStartGame");

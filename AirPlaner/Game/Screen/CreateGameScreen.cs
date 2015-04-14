@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using Airliner.Plugin.Entities.Game.Database;
 using AirPlaner.Config.Entity;
 using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
@@ -31,6 +34,7 @@ namespace AirPlaner.Game.Screen
         public Window Window { get; set; }
         public Label ErrorText { get; set; }
         public ComboBox TurnComboBox { get; set; }
+        public GameDatabaseSelectionDialog GameDatabaseSelectionDialog { get; set; }
 
         public CreateGameScreen()
         {
@@ -56,7 +60,16 @@ namespace AirPlaner.Game.Screen
             ScreenManager.ScriptLoader.Load("Content/UI/CreateGameUI.lua");
             ScreenManager.ScriptLoader.SetContext(this);
             ScreenManager.ScriptLoader.Run();
+
+            GameDatabaseSelectionDialog.OnSelection += GameDatabaseSelectionDialog_OnSelection;
+
             base.Activate(instancePreserved);
+        }
+
+        void GameDatabaseSelectionDialog_OnSelection(object sender, EventArgs e)
+        {
+            //todo: Continue
+            var selected = GameDatabaseSelectionDialog.SelectedProvider;
         }
 
         public void ChangeUserPictureButtonOnClick(object sender, EventArgs eventArgs)
@@ -97,6 +110,22 @@ namespace AirPlaner.Game.Screen
                     AirlineImageBox.Refresh();
                 }
             };
+        }
+
+        public void SelectGameDatabaseDialogButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            GameDatabaseSelectionDialog.Show();
+        }
+
+        public void GameDatabaseSelectionInit()
+        {
+            var assembly = AppDomain.CurrentDomain.Load("SampleGameDatabase");
+
+            foreach (Type mytype in assembly.GetTypes().Where(mytype => mytype.GetInterfaces().Contains(typeof(IGameDatabaseProvider))))
+            {
+                var provider = Activator.CreateInstance(mytype) as IGameDatabaseProvider;
+                GameDatabaseSelectionDialog.Items.Add(provider);
+            }
         }
 
         public List<TurnLength> GetTurnLengths()

@@ -191,6 +191,11 @@ namespace AirPlaner.UI
             return musicPlayer;
         }
 
+        public GameDatabaseSelectionDialog CreateGameDatabaseSelectionDialog()
+        {
+            return new GameDatabaseSelectionDialog(Manager);
+        }
+
         public void AddToManager(Component component)
         {
             Manager.Add(component);

@@ -75,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="UI\Components\GameDatabaseSelectionDialog.cs" />
     <Compile Include="UI\Components\MusicPlayer.cs" />
     <Compile Include="UI\Components\HeaderLabel.cs" />
     <Compile Include="UI\Components\ImageButton.cs" />

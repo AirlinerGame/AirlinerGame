@@ -129,6 +129,7 @@ namespace AirPlaner
             UserData.RegisterType<HeaderLabel>();
             UserData.RegisterType<Savegame>();
             UserData.RegisterType<MusicPlayer>();
+            UserData.RegisterType<GameDatabaseSelectionDialog>();
 
             AddInitialScreens();
 
