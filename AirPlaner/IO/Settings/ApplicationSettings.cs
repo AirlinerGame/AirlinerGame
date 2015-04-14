@@ -38,6 +38,9 @@ namespace AirPlaner.IO.Settings
 
         public string SelectedLanguage { get; set; }
         public bool FullScreen { get; set; }
+        public bool MusicEnabled { get; set; }
+        public int MusicVolume { get; set; }
+        public int FxVolume { get; set; }
     }
 
 }

@@ -2,4 +2,7 @@
 <ApplicationSettings>
   <SelectedLanguage>en</SelectedLanguage>
   <FullScreen>false</FullScreen>
+  <MusicEnabled>true</MusicEnabled>
+  <MusicVolume>100</MusicVolume>
+  <FxVolume>100</FxVolume>
 </ApplicationSettings>

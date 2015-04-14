@@ -30,3 +30,8 @@ sideBar.Add(startGameButton);
 sideBar.Add(loadGameButton);
 sideBar.Add(settingsButton);
 ui.AddToManager(sideBar);
+
+ui.Include("Content/UI/Modules/SettingsBox.lua");
+context.SettingsWindow = settingsWindow;
+context.MusicVolumeTrackBar = musicVolume;
+context.FxVolumeTrackBar = soundEffectVolume;

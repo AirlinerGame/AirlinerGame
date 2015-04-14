@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Airliner.Plugin.Entities
+namespace Airliner.Plugin.Entities.Audio
 {
     public class SoundPlayerEventArgs : EventArgs
     {

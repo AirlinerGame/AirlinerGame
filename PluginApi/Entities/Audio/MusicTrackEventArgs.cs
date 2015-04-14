@@ -1,4 +1,4 @@
-﻿namespace Airliner.Plugin.Entities
+﻿namespace Airliner.Plugin.Entities.Audio
 {
     public class MusicTrackEventArgs
     {

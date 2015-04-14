@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Airliner.Plugin.Entities;
+using Airliner.Plugin.Entities.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using TomShane.Neoforce.Controls;
 

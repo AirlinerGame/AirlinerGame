@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading;
 using Airliner.Plugin.API;
 using Airliner.Plugin.Entities;
+using Airliner.Plugin.Entities.Audio;
 using AirPlaner.Game.Screen.State;
 using AirPlaner.IO.Settings;
 using AirPlaner.Screen;

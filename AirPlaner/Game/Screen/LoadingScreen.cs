@@ -91,8 +91,6 @@ namespace AirPlaner.Game.Screen
                     };
                     worker.RunWorkerCompleted += delegate
                     {
-                        manager.Remove(textLabel);
-                        manager.Remove(progressBar);
                         SwitchState();
                     };
                     worker.RunWorkerAsync(ScreenManager);

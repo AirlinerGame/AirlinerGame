@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using Airliner.Plugin.API;
 using AirPlaner.Config.Entity;
 using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
@@ -21,6 +22,8 @@ namespace AirPlaner.Game.Screen
 
         public Window SettingsWindow { get; set; }
         public ComboBox LanguageComboBox { get; set; }
+        public TrackBar MusicVolumeTrackBar { get; set; }
+        public TrackBar FxVolumeTrackBar { get; set; }
 
         public Texture2D Logo { get; set; }
 
@@ -50,7 +53,23 @@ namespace AirPlaner.Game.Screen
                 ScreenManager.ScriptLoader.Run();
 
                 _backgroundTexture = _content.Load<Texture2D>("AirlinerBG");
+                MusicVolumeTrackBar.Value = ApplicationSettings.Instance.MusicVolume;
+                FxVolumeTrackBar.Value = ApplicationSettings.Instance.FxVolume;
+                MusicVolumeTrackBar.ValueChanged += MusicVolumeTrackBar_ValueChanged;
+                FxVolumeTrackBar.ValueChanged += FxVolumeTrackBar_ValueChanged;
             }
+        }
+
+        void FxVolumeTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            SoundManager.Instance.SoundEffectVolume = FxVolumeTrackBar.Value;
+            ApplicationSettings.Instance.FxVolume = FxVolumeTrackBar.Value;
+        }
+
+        void MusicVolumeTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            SoundManager.Instance.MusicVolume = MusicVolumeTrackBar.Value;
+            ApplicationSettings.Instance.MusicVolume = MusicVolumeTrackBar.Value;
         }
         public void StartGameButtonOnClick(object sender, EventArgs eventArgs)
         {
@@ -71,6 +90,7 @@ namespace AirPlaner.Game.Screen
         public void SettingsSaveAndCloseOnClick(object sender, EventArgs eventArgs)
         {
             SettingsWindow.Close();
+            ApplicationSettings.Instance.Save();
         }
 
         public void InitLanguageComboBox()

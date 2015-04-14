@@ -106,6 +106,12 @@ namespace AirPlaner.UI
             return sideBar;
         }
 
+        public CheckBox CreateCheckBox()
+        {
+            var checkbox = new CheckBox(Manager) {TextColor = Color.White};
+            return checkbox;
+        }
+
         public Panel CreatePanel()
         {
             var panel = new Panel(Manager);
@@ -116,6 +122,12 @@ namespace AirPlaner.UI
         {
             var imageBox = new ImageBox(Manager);
             return imageBox;
+        }
+
+        public TrackBar CreateTrackBar()
+        {
+            var trackbar = new TrackBar(Manager);
+            return trackbar;
         }
 
         public TextBox CreateTextBox()

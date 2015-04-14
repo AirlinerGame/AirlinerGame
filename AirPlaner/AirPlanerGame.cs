@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using Airliner.Plugin.API;
-using Airliner.Plugin.Entities;
+using Airliner.Plugin.Entities.Audio;
 using AirPlaner.Config.Entity;
 using AirPlaner.Game.Screen;
 using AirPlaner.IO.Settings;
@@ -16,8 +16,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MoonSharp.Interpreter;
-using OpenTK.Graphics.ES30;
 using TomShane.Neoforce.Controls;
+using EventArgs = System.EventArgs;
 
 namespace AirPlaner
 {
@@ -50,14 +50,14 @@ namespace AirPlaner
         public AirPlanerGame()
         {
             _graphics = new GraphicsDeviceManager(this);
-            Window.IsBorderless = true;
+            //Window.IsBorderless = true;
             Content.RootDirectory = "Content";
 
-            ApplicationSettings.Instance.FullScreen = true;
-            _graphics.PreferredBackBufferWidth = 1920;
-            _graphics.PreferredBackBufferHeight = 1080;
+            //ApplicationSettings.Instance.FullScreen = true;
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
 
-            _graphics.IsFullScreen = true;
+            //_graphics.IsFullScreen = true;
             _graphics.ApplyChanges();
 
             AvailableLanguages = new Dictionary<int, Language>
@@ -109,6 +109,8 @@ namespace AirPlaner
             UserData.RegisterType<Panel>();
             UserData.RegisterType<SideBar>();
             UserData.RegisterType<TextBox>();
+            UserData.RegisterType<CheckBox>();
+            UserData.RegisterType<TrackBar>();
             UserData.RegisterType<Window>();
 
             UserData.RegisterType<Color>();
@@ -160,6 +162,9 @@ namespace AirPlaner
             var files = Directory.GetFiles(Path.Combine("Content", "Music"), "*.ogg");
             Shuffle(files);
 
+            SoundManager.Instance.MusicVolume = ApplicationSettings.Instance.MusicVolume;
+            SoundManager.Instance.SoundEffectVolume = ApplicationSettings.Instance.FxVolume;
+
             SoundManager.Instance.TrackQueue = new Queue<MusicTrack>();
 
             foreach (var file in files)
@@ -183,6 +188,47 @@ namespace AirPlaner
                 SoundManager.Instance.TrackQueue.Enqueue(musicTrack);
             }
 
+            SoundManager.Instance.PlayerStateChanged += MusicPlayerStateChanged;
+            SoundManager.Instance.MusicVolumeChanged += MusicPlayerVolumeChanged;
+
+        }
+
+        private void MusicPlayerVolumeChanged(object sender, EventArgs e)
+        {
+            if (_fmodchannel != null)
+            {
+                var musicVolume = (float)SoundManager.Instance.MusicVolume;
+                if (Math.Abs(musicVolume) > 0.00f)
+                {
+                    _fmodchannel.setVolume(musicVolume / 100);
+                }
+                ApplicationSettings.Instance.MusicVolume = SoundManager.Instance.MusicVolume;
+            }
+        }
+
+        private void MusicPlayerStateChanged(object sender, SoundPlayerEventArgs eventArgs)
+        {
+            switch (eventArgs.NewState)
+            {
+                case SoundPlayerState.Playing:
+                    bool isPaused;
+                    _fmodchannel.getPaused(out isPaused);
+                    if (isPaused)
+                    {
+                        _fmodchannel.setPaused(false);
+                    }
+                    else
+                    {
+                        _fmodsystem.playSound(_fmodsound, _fmodChannelGroup, false, out _fmodchannel);                        
+                    }
+                    break;
+                case SoundPlayerState.Paused:
+                    _fmodchannel.setPaused(true);
+                    break;
+                case SoundPlayerState.Stopped:
+                    _fmodchannel.stop();
+                    break;
+            }
         }
 
         private string Transform(string value)
@@ -214,28 +260,32 @@ namespace AirPlaner
                 }
             }
 
-            if (_fmodchannel != null)
+            if (ApplicationSettings.Instance.MusicEnabled)
             {
-                _fmodchannel.isPlaying(out _playing);
-                SoundManager.Instance.PlayingMusic = _playing;
-            }
+                if (_fmodchannel != null)
+                {
+                    _fmodchannel.isPlaying(out _playing);
+                    SoundManager.Instance.PlayingMusic = _playing;
+                }
 
-            if (!_playing && SoundManager.Instance.TrackQueue.Count > 0)
-            {
-                var musicTrack = SoundManager.Instance.TrackQueue.Dequeue();
-                _fmodsystem.createSound(musicTrack.Path, MODE.DEFAULT, out _fmodsound);
-                uint length;
-                _fmodsound.getLength(out length, TIMEUNIT.MS);
-                musicTrack.Length = length;
-                _fmodsystem.playSound(_fmodsound, _fmodChannelGroup, false, out _fmodchannel);
-                SoundManager.Instance.CurrentTrack = musicTrack;
-            }
+                if (!_playing && SoundManager.Instance.TrackQueue.Count > 0)
+                {
+                    var musicTrack = SoundManager.Instance.TrackQueue.Dequeue();
+                    _fmodsystem.createSound(musicTrack.Path, MODE.DEFAULT, out _fmodsound);
+                    uint length;
+                    _fmodsound.getLength(out length, TIMEUNIT.MS);
+                    musicTrack.Length = length;
+                    _fmodsystem.playSound(_fmodsound, _fmodChannelGroup, false, out _fmodchannel);
+                    _fmodchannel.setVolume((float)SoundManager.Instance.MusicVolume/100);
+                    SoundManager.Instance.CurrentTrack = musicTrack;
+                }
 
-            if (_playing)
-            {
-                uint position;
-                _fmodchannel.getPosition(out position, TIMEUNIT.MS);
-                SoundManager.Instance.CurrentPosition = position;
+                if (_playing)
+                {
+                    uint position;
+                    _fmodchannel.getPosition(out position, TIMEUNIT.MS);
+                    SoundManager.Instance.CurrentPosition = position;
+                }
             }
 
             GuiManager.Update(gameTime);
