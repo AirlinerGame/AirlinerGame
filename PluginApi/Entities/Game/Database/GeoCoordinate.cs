@@ -2,6 +2,7 @@
 
 namespace Airliner.Plugin.Entities.Game.Database
 {
+    [Serializable]
     public struct GeoCoordinate : IEquatable<GeoCoordinate>
     {
         private readonly double _latitude;

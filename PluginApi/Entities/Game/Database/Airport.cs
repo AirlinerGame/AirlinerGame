@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Airliner.Plugin.Entities.Game.Database
 {
+    [Serializable]
     public class Airport
     {
         public string Name { get; set; }

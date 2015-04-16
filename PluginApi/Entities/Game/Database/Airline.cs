@@ -1,5 +1,8 @@
-﻿namespace Airliner.Plugin.Entities.Game.Database
+﻿using System;
+
+namespace Airliner.Plugin.Entities.Game.Database
 {
+    [Serializable]
     public class Airline
     {
         public string Name { get; set; }
