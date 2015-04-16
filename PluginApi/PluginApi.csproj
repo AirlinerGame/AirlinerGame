@@ -44,6 +44,12 @@
     <Compile Include="Entities\Audio\MusicTrack.cs" />
     <Compile Include="Entities\Audio\MusicTrackEventArgs.cs" />
     <Compile Include="Entities\Audio\SoundPlayerEventArgs.cs" />
+    <Compile Include="Entities\Game\Database\Airline.cs" />
+    <Compile Include="Entities\Game\Database\Airport.cs" />
+    <Compile Include="Entities\Game\Database\City.cs" />
+    <Compile Include="Entities\Game\Database\GameEvent.cs" />
+    <Compile Include="Entities\Game\Database\GeoCoordinate.cs" />
+    <Compile Include="Entities\Game\Database\Runway.cs" />
     <Compile Include="Entities\Game\GameDatabase.cs" />
     <Compile Include="Entities\Game\Database\IGameDatabaseProvider.cs" />
     <Compile Include="Entities\Game\GameData.cs" />

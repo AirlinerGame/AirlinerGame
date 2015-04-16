@@ -4,6 +4,7 @@ using System.Threading;
 using Airliner.Plugin.API;
 using Airliner.Plugin.Entities;
 using Airliner.Plugin.Entities.Audio;
+using Airliner.Plugin.Entities.Game.Database;
 using AirPlaner.Game.Screen.State;
 using AirPlaner.IO.Settings;
 using AirPlaner.Screen;
@@ -20,6 +21,8 @@ namespace AirPlaner.Game.Screen
         public Texture2D Background { get; set; }
         public MoneyLabel MoneyLabel { get; set; }
         public MusicPlayer MusicPlayer { get; set; }
+        public IGameDatabaseProvider DatabaseProvider { get; set; }
+
 
         public Savegame Data
         {
@@ -28,13 +31,8 @@ namespace AirPlaner.Game.Screen
 
         public void AsyncContentLoad(BackgroundWorker worker)
         {
-            worker.ReportProgress(10);
-            Thread.Sleep(1000);
-            worker.ReportProgress(35);
-            Thread.Sleep(500);
-            worker.ReportProgress(80);
-            Thread.Sleep(1000);
-
+            worker.ReportProgress(50);
+            var database = DatabaseProvider.CreateDatabase();
             worker.ReportProgress(100);
         }
 
