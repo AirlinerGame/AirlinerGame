@@ -115,6 +115,7 @@ namespace AirPlaner.Game.Screen
         public void SelectGameDatabaseDialogButtonOnClick(object sender, EventArgs eventArgs)
         {
             GameDatabaseSelectionDialog.Show();
+            GameDatabaseSelectionDialog.BringToFront();
         }
 
         public void GameDatabaseSelectionInit()
