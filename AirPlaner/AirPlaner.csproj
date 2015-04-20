@@ -109,9 +109,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Tao.Sdl.dll</HintPath>
     </Reference>
-    <Reference Include="TomShane.Neoforce.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\WindowsGL\Debug\TomShane.Neoforce.Controls.dll</HintPath>
+    <Reference Include="TomShane.Neoforce.Controls">
+      <HintPath>..\Libs\TomShane.Neoforce.Controls.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
